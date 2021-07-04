@@ -1,0 +1,33 @@
+{
+  "name": "canicat-backend",
+  "version": "1.0.0",
+  "description": "API REST para la app móvil CaniCat, proyecto de universidad",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node --unhandled-rejections=strict ./dist/index.js",
+    "debug": "set DEBUG=* && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arroyo, Bayona, Espinoza, Lino, Mendoza",
+  "license": "ISC",
+  "dependencies": {
+    "argon2": "^0.28.2",
+    "cors": "^2.8.5",
+    "debug": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "express-winston": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/debug": "^4.1.6",
+    "@types/express": "^4.17.12",
+    "@types/jsonwebtoken": "^8.5.3",
+    "eslint": "^7.30.0",
+    "source-map-support": "^0.5.19",
+    "typescript": "^4.3.5"
+  }
+}
