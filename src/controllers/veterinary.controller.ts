@@ -34,6 +34,12 @@ class VeterinaryController {
       res.status(500).json({ msg: `fail to create veterinaries.` });
     }
   }
+  /*
+   * en este punto se tiene al veterinario en res.locals
+   * gracias al middleware "validateVeterinaryExists"
+   * el cual guarda en este el objeto res.locals la entidad
+   * el objeto res.locals se mantiene durante el ciclo de petición y respuesta
+   */
   async update(req: express.Request, res: express.Response) {
     try {
       log(await veterinaryService.update(res.locals.veterinary, req.body));
