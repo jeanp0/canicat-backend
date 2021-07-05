@@ -9,8 +9,8 @@ import express from "express";
 import * as expressWinston from "express-winston";
 import * as http from "http";
 import * as winston from "winston";
-import { CommonRoutesConfig } from "./common/common.routes.config";
-import { PetRoutes } from "./pet/pet.routes.config";
+import { CommonRoutesConfig } from "./app/common/common.routes.config";
+import { PetRoutes } from "./app/pet/pet.routes.config";
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);

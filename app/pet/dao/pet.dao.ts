@@ -5,12 +5,21 @@ const log: debug.IDebugger = debug("app:in-memory-dao");
 
 // DAO = Data Access Object
 // DAO es un concepto que hace referencia a usar objetos para acceder a la data de la BDD
+// Sequalize ORM
+// SQL
 class PetDao {
   constructor() {
     log("Created new instance of UsersDAO");
   }
   async getAll() {
-    return "get all works!";
+    // simula obtención a la BDD
+    const pets = [
+      { id: 1, name: "hachiko" },
+      { id: 2, name: "firulais" },
+      { id: 3, name: "mascota x" },
+      { id: 4, name: "mascota y" },
+    ];
+    return pets;
   }
   async getById(petId: string) {
     return "getbyid works!";
