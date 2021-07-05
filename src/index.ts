@@ -1,22 +1,24 @@
-import dotenv from "dotenv";
-const dotenvResult = dotenv.config();
-if (dotenvResult.error) {
-  throw dotenvResult.error;
-}
 import cors from "cors";
 import debug from "debug";
 import express from "express";
 import * as expressWinston from "express-winston";
 import * as http from "http";
 import * as winston from "winston";
-import { CommonRoutesConfig } from "./app/common/common.routes.config";
-import { PetRoutes } from "./app/pet/pet.routes.config";
+import { CommonRoutesConfig } from "./routes/common.routes.config";
+import db from "./config/db.config";
+import { VeterinaryRoutes } from "./routes/veterinary.routes.config";
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
-const port = 3000;
+const PORT = 3000;
 const routes: Array<CommonRoutesConfig> = [];
 const debugLog: debug.IDebugger = debug("app");
+
+// se sincronizan los modelos de la instancia de la BDD
+// por ejemplo, aquí es cuando crea las tablas si no existen
+db.sync().then(() => {
+  debugLog("Connect to DB");
+});
 
 // here we are adding middleware to parse all incoming requests as JSON
 app.use(express.json());
@@ -41,17 +43,17 @@ app.use(expressWinston.logger(loggerOptions));
 
 // here we are adding the UserRoutes to our array,
 // after sending the Express.js application object to have the routes added to our app!
-// (here is added the routes to the app)
-routes.push(new PetRoutes(app));
+// (here is added the routes to the app server)
+routes.push(new VeterinaryRoutes(app));
 
 // this is a simple route to make sure everything is working properly
-const runningMessage = `Server running at http://localhost:${port}`;
+const runningMessage = `Server running at http://localhost:${PORT}`;
 app.get("/", (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage);
 });
 
 // the already configured server listens on the corresponding port
-server.listen(port, () => {
+server.listen(PORT, () => {
   routes.forEach((route: CommonRoutesConfig) => {
     debugLog(`Routes configured for ${route.getName()}`);
   });
