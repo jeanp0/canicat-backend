@@ -46,7 +46,7 @@ class VeterinaryController {
       res.status(204).json();
     } catch (err) {
       log(err.message);
-      res.status(500).json({ msg: `fail to put veterinarie.` });
+      res.status(500).json({ msg: `fail to update veterinarie.` });
     }
   }
   async delete(req: express.Request, res: express.Response) {

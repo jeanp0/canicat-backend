@@ -7,6 +7,7 @@ import * as winston from "winston";
 import { CommonRoutesConfig } from "./routes/common.routes.config";
 import db from "./config/db.config";
 import { VeterinaryRoutes } from "./routes/veterinary.routes.config";
+import { DiseaseRecordRoutes } from "./routes/disease.record.routes.config";
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -45,6 +46,7 @@ app.use(expressWinston.logger(loggerOptions));
 // after sending the Express.js application object to have the routes added to our app!
 // (here is added the routes to the app server)
 routes.push(new VeterinaryRoutes(app));
+routes.push(new DiseaseRecordRoutes(app));
 
 // this is a simple route to make sure everything is working properly
 const runningMessage = `Server running at http://localhost:${PORT}`;

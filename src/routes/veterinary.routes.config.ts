@@ -2,7 +2,7 @@ import express from "express";
 import { CommonRoutesConfig } from "./common.routes.config";
 import veterinaryController from "../controllers/veterinary.controller";
 import veterinaryMiddleware from "../middlewares/veterinary.middleware";
-import { body, check } from "express-validator";
+import { body } from "express-validator";
 import bodyValidationMiddleware from "../middlewares/body.validation.middleware";
 
 export class VeterinaryRoutes extends CommonRoutesConfig {
