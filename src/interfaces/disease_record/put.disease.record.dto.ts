@@ -1,6 +1,5 @@
-export interface PutDiseaseDto {
+export interface PutDiseaseRecordDto {
   id: string;
   name: string;
   description: string;
-  veterinaryId: string;
 }

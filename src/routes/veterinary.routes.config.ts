@@ -26,7 +26,7 @@ export class VeterinaryRoutes extends CommonRoutesConfig {
 
     this.app
       .route("/api/veterinaries/:id")
-      .all(veterinaryMiddleware.validateVeterinaryExists)
+      .all(veterinaryMiddleware.validateVeterinaryExistsByParams)
       .get(veterinaryController.read)
       .put(
         body("dni").isString(),

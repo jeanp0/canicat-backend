@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../config/db.config";
-import { PostDiseaseDto } from "../interfaces/disease_record/post.disease.record.dto";
+import { PostDiseaseRecordDto } from "../interfaces/disease_record/post.disease.record.dto";
 import Veterinary from "./veterinary.model";
 
-class DiseaseRecord extends Model<PostDiseaseDto> {}
+class DiseaseRecord extends Model<PostDiseaseRecordDto> {}
 DiseaseRecord.init(
   {
     id: {
@@ -18,13 +18,6 @@ DiseaseRecord.init(
     },
     description: {
       type: DataTypes.STRING,
-    },
-    veterinaryId: {
-      type: DataTypes.UUID,
-      references: {
-        model: Veterinary,
-        key: "id",
-      },
     },
   },
   { sequelize: db, modelName: "disease_record" }

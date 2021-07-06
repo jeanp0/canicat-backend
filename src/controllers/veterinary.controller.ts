@@ -14,7 +14,7 @@ class VeterinaryController {
       res.status(200).json(data);
     } catch (err) {
       log(err.message);
-      res.status(500).json({ msg: `fail to list veterinaries.` });
+      res.status(500).json({ message: `fail to list veterinaries.` });
     }
   }
   async read(req: express.Request, res: express.Response) {
@@ -22,7 +22,7 @@ class VeterinaryController {
       res.status(200).json(res.locals.veterinary);
     } catch (err) {
       log(err.message);
-      res.status(500).json({ msg: `fail to getById veterinary.` });
+      res.status(500).json({ message: `fail to getById veterinary.` });
     }
   }
   async create(req: express.Request, res: express.Response) {
@@ -31,7 +31,7 @@ class VeterinaryController {
       res.status(201).json({ id: id });
     } catch (err) {
       log(err.message);
-      res.status(500).json({ msg: `fail to create veterinaries.` });
+      res.status(500).json({ message: `fail to create veterinaries.` });
     }
   }
   /*
@@ -46,7 +46,7 @@ class VeterinaryController {
       res.status(204).json();
     } catch (err) {
       log(err.message);
-      res.status(500).json({ msg: `fail to update veterinarie.` });
+      res.status(500).json({ message: `fail to update veterinarie.` });
     }
   }
   async delete(req: express.Request, res: express.Response) {
@@ -55,7 +55,7 @@ class VeterinaryController {
       res.status(204).json();
     } catch (err) {
       log(err.message);
-      res.status(500).json({ msg: `fail to delete veterinarie.` });
+      res.status(500).json({ message: `fail to delete veterinarie.` });
     }
   }
   async deleteAll(req: express.Request, res: express.Response) {
@@ -64,7 +64,7 @@ class VeterinaryController {
       res.status(204).json();
     } catch (err) {
       log(err.message);
-      res.status(500).json({ msg: `fail to delete veterinaries.` });
+      res.status(500).json({ message: `fail to delete veterinaries.` });
     }
   }
 }

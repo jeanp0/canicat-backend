@@ -1,6 +1,5 @@
-export interface PostDiseaseDto {
+export interface PostDiseaseRecordDto {
   id: string;
   name: string;
   description?: string;
-  veterinaryId?: string;
 }
