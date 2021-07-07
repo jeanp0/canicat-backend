@@ -23,7 +23,7 @@ export class TreatmentRecordRoutes extends CommonRoutesConfig {
         body("lastTreatmentDate").isDate(),
         body("nextTreatmentDate").isDate().optional(),
         body("description").isString().optional(),
-        body("veterinaryId").isUUID(4).optional(),
+        body("veterinaryId").isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         treatmentRecordController.create
       )

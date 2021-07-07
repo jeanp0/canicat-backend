@@ -1,6 +1,5 @@
 import { CRUD } from "../interfaces/crud.interface";
 import { v4 as uuidv4 } from "uuid";
-
 import { PatchVaccineRecordDto } from "../interfaces/vaccine_record/patch.vaccine.record.dto";
 import { PostVaccineRecordDto } from "../interfaces/vaccine_record/post.vaccine.record.dto";
 import { PutVaccineRecordDto } from "../interfaces/vaccine_record/put.vaccine.record.dto";

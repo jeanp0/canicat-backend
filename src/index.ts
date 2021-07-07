@@ -8,7 +8,7 @@ import { CommonRoutesConfig } from "./routes/common.routes.config";
 import db from "./config/db.config";
 import { VeterinaryRoutes } from "./routes/veterinary.routes.config";
 import { PetRoutes } from "./routes/pet.routes.config";
-import {UserRoutes} from "./routes/user.routes.config";
+import { UserRoutes } from "./routes/user.routes.config";
 import { DiseaseRecordRoutes } from "./routes/disease.record.routes.config";
 import { TreatmentRecordRoutes } from "./routes/treatment.record.routes.config";
 import { VaccineRecordRoutes } from "./routes/vaccine.record.routes.config";
@@ -22,7 +22,7 @@ const debugLog: debug.IDebugger = debug("app");
 // se sincronizan los modelos de la instancia de la BDD
 // por ejemplo, aquí es cuando crea las tablas si no existen
 db.sync().then(() => {
-  debugLog("Connect to DB");
+  debugLog("Connect to DB. All models synchronized.");
 });
 
 // here we are adding middleware to parse all incoming requests as JSON

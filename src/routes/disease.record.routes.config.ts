@@ -1,6 +1,5 @@
 import express from "express";
 import { body } from "express-validator";
-import { all } from "sequelize/types/lib/operators";
 import diseaseRecordController from "../controllers/disease.record.controller";
 import bodyValidationMiddleware from "../middlewares/body.validation.middleware";
 import diseaseRecordMiddleware from "../middlewares/disease.record.middleware";
@@ -21,7 +20,7 @@ export class DiseaseRecordRoutes extends CommonRoutesConfig {
         veterinaryMiddleware.validateVeterinaryExistsByBody,
         body("name").isString(),
         body("description").isString().optional(),
-        body("veterinaryId").isUUID(4).optional(),
+        body("veterinaryId").isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         diseaseRecordController.create
       )

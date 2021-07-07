@@ -3,9 +3,7 @@ import { body } from "express-validator";
 import vaccineRecordController from "../controllers/vaccine.record.controller";
 import bodyValidationMiddleware from "../middlewares/body.validation.middleware";
 import vaccineRecordMiddleware from "../middlewares/vaccine.record.validation.middleware";
-
 import veterinaryMiddleware from "../middlewares/veterinary.middleware";
-
 import { CommonRoutesConfig } from "./common.routes.config";
 
 export class VaccineRecordRoutes extends CommonRoutesConfig {
@@ -24,7 +22,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
         body("lastVaccineDate").isDate(),
         body("nextVaccineDate").isDate().optional(),
         body("description").isString().optional(),
-        body("veterinaryId").isUUID(4).optional(),
+        body("veterinaryId").isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         vaccineRecordController.create
       )

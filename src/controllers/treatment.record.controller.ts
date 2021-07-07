@@ -9,7 +9,6 @@ class TreatmentRecordController {
     try {
       const limit = req.query?.limit as number | undefined;
       const offset = req.query?.offset as number | undefined;
-      log(limit, offset);
       const data = await treatmentRecordService.read(limit, offset);
       res.status(200).json(data);
     } catch (err) {

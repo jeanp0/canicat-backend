@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../config/db.config";
 import { PostTreatmentRecordDto } from "../interfaces/treatment_record/post.treatment.record.dto";
-import Veterinary from "./veterinary.model";
 
 class TreatmentRecord extends Model<PostTreatmentRecordDto> {}
 TreatmentRecord.init(

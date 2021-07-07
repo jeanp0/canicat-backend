@@ -9,7 +9,6 @@ class VeterinaryController {
     try {
       const limit = req.query?.limit as number | undefined;
       const offset = req.query?.offset as number | undefined;
-      log(limit, offset);
       const data = await veterinaryService.read(limit, offset);
       res.status(200).json(data);
     } catch (err) {
@@ -31,7 +30,7 @@ class VeterinaryController {
       res.status(201).json({ id: id });
     } catch (err) {
       log(err.message);
-      res.status(500).json({ message: `fail to create veterinaries.` });
+      res.status(500).json({ message: `fail to create veterinarie.` });
     }
   }
   /*

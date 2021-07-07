@@ -1,9 +1,8 @@
 import { DataTypes, Model } from "sequelize";
 import db from "../config/db.config";
 import { PostVaccineRecordDto } from "../interfaces/vaccine_record/post.vaccine.record.dto";
-import Veterinary from "./veterinary.model";
 
-class VaccineRecord extends Model {}
+class VaccineRecord extends Model<PostVaccineRecordDto> {}
 VaccineRecord.init(
   {
     id: {

@@ -1,9 +1,9 @@
-export interface PostUserDto{
-    id?: string;
-    name: string;
-    dni: string;
-    telf: string;
-    email: string;
-    user_name: string;
-    password: string;
+export interface PostUserDto {
+  id: string;
+  email: string;
+  password: string;
+  firstname: string;
+  lastname: string;
+  dni: string;
+  telf?: string;
 }
