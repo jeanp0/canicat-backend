@@ -9,6 +9,9 @@ import db from "./config/db.config";
 import { VeterinaryRoutes } from "./routes/veterinary.routes.config";
 import { PetRoutes } from "./routes/pet.routes.config";
 import {UserRoutes} from "./routes/user.routes.config";
+import { DiseaseRecordRoutes } from "./routes/disease.record.routes.config";
+import { TreatmentRecordRoutes } from "./routes/treatment.record.routes.config";
+import { VaccineRecordRoutes } from "./routes/vaccine.record.routes.config";
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -49,6 +52,9 @@ app.use(expressWinston.logger(loggerOptions));
 routes.push(new VeterinaryRoutes(app));
 routes.push(new PetRoutes(app));
 routes.push(new UserRoutes(app));
+routes.push(new DiseaseRecordRoutes(app));
+routes.push(new TreatmentRecordRoutes(app));
+routes.push(new VaccineRecordRoutes(app));
 
 // this is a simple route to make sure everything is working properly
 const runningMessage = `Server running at http://localhost:${PORT}`;

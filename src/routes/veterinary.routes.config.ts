@@ -2,7 +2,7 @@ import express from "express";
 import { CommonRoutesConfig } from "./common.routes.config";
 import veterinaryController from "../controllers/veterinary.controller";
 import veterinaryMiddleware from "../middlewares/veterinary.middleware";
-import { body, check } from "express-validator";
+import { body } from "express-validator";
 import bodyValidationMiddleware from "../middlewares/body.validation.middleware";
 
 export class VeterinaryRoutes extends CommonRoutesConfig {
@@ -26,7 +26,7 @@ export class VeterinaryRoutes extends CommonRoutesConfig {
 
     this.app
       .route("/api/veterinaries/:id")
-      .all(veterinaryMiddleware.validateVeterinaryExists)
+      .all(veterinaryMiddleware.validateVeterinaryExistsByParams)
       .get(veterinaryController.read)
       .put(
         body("dni").isString(),
