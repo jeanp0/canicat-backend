@@ -1,13 +1,13 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from 'sequelize';
 
-const host: string = "localhost";
-const user: string = "root";
-const password: string = "#MySQL8:Password*";
-const dbName: string = "canicatdb";
+const host = 'localhost';
+const user = 'root';
+const password = '#MySQL8:Password*';
+const dbName = 'canicatdb';
 
 const db = new Sequelize(dbName, user, password, {
   host,
-  dialect: "mysql",
+  dialect: 'mysql',
 });
 
 export default db;

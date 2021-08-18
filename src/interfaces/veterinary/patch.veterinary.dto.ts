@@ -1,3 +1,3 @@
-import { PutVeterinaryDto } from "./put.veterinary.dto";
+import { PutVeterinaryDto } from './put.veterinary.dto';
 
-export interface PatchVeterinaryDto extends Partial<PutVeterinaryDto> {}
+export type PatchVeterinaryDto = Partial<PutVeterinaryDto>;

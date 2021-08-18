@@ -1,8 +1,8 @@
-import express from "express";
-import debug from "debug";
-import diseaseRecordService from "../services/disease.record.service";
+import express from 'express';
+import debug from 'debug';
+import diseaseRecordService from '../services/disease.record.service';
 
-const log: debug.IDebugger = debug("app:disease-record-controller");
+const log: debug.IDebugger = debug('app:disease-record-controller');
 
 class DiseaseRecordController {
   async readAll(req: express.Request, res: express.Response) {
@@ -11,7 +11,7 @@ class DiseaseRecordController {
       const offset = req.query?.offset as number | undefined;
       const data = await diseaseRecordService.read(limit, offset);
       res.status(200).json(data);
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to list disease records.` });
     }
@@ -19,7 +19,7 @@ class DiseaseRecordController {
   async read(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.diseaseRecord);
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to getById disease record.` });
     }
@@ -28,18 +28,16 @@ class DiseaseRecordController {
     try {
       const id = await diseaseRecordService.create(req.body);
       res.status(201).json({ id: id });
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to create disease record.` });
     }
   }
   async update(req: express.Request, res: express.Response) {
     try {
-      log(
-        await diseaseRecordService.update(res.locals.diseaseRecord, req.body)
-      );
+      log(await diseaseRecordService.update(res.locals.diseaseRecord, req.body));
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to update disease record.` });
     }
@@ -48,7 +46,7 @@ class DiseaseRecordController {
     try {
       log(await diseaseRecordService.delete(res.locals.diseaseRecord));
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to delete disease record.` });
     }
@@ -57,7 +55,7 @@ class DiseaseRecordController {
     try {
       log(await diseaseRecordService.deleteAll());
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to delete disease records.` });
     }

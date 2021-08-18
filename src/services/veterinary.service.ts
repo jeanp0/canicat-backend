@@ -1,9 +1,9 @@
-import { CRUD } from "../interfaces/crud.interface";
-import { v4 as uuidv4 } from "uuid";
-import Veterinary from "../models/veterinary.model";
-import { PostVeterinaryDto } from "../interfaces/veterinary/post.veterinary.dto";
-import { PutVeterinaryDto } from "../interfaces/veterinary/put.veterinary.dto";
-import { PatchVeterinaryDto } from "../interfaces/veterinary/patch.veterinary.dto";
+import { CRUD } from '../interfaces/crud.interface';
+import { v4 as uuidv4 } from 'uuid';
+import Veterinary from '../models/veterinary.model';
+import { PostVeterinaryDto } from '../interfaces/veterinary/post.veterinary.dto';
+import { PutVeterinaryDto } from '../interfaces/veterinary/put.veterinary.dto';
+import { PatchVeterinaryDto } from '../interfaces/veterinary/patch.veterinary.dto';
 
 class VeterinaryService implements CRUD {
   async read(limit: number | undefined, offset: number | undefined) {
@@ -21,10 +21,7 @@ class VeterinaryService implements CRUD {
     await Veterinary.create({ ...resource, id });
     return id;
   }
-  async update(
-    record: Veterinary,
-    resource: PutVeterinaryDto | PatchVeterinaryDto
-  ) {
+  async update(record: Veterinary, resource: PutVeterinaryDto | PatchVeterinaryDto) {
     return record.update({ ...resource });
   }
   async delete(record: Veterinary) {

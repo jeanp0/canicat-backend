@@ -1,8 +1,8 @@
-import express from "express";
-import debug from "debug";
-import treatmentRecordService from "../services/treatment.record.service";
+import express from 'express';
+import debug from 'debug';
+import treatmentRecordService from '../services/treatment.record.service';
 
-const log: debug.IDebugger = debug("app:treatment-record-controller");
+const log: debug.IDebugger = debug('app:treatment-record-controller');
 
 class TreatmentRecordController {
   async readAll(req: express.Request, res: express.Response) {
@@ -11,7 +11,7 @@ class TreatmentRecordController {
       const offset = req.query?.offset as number | undefined;
       const data = await treatmentRecordService.read(limit, offset);
       res.status(200).json(data);
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to list treatment records.` });
     }
@@ -19,7 +19,7 @@ class TreatmentRecordController {
   async read(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.treatmentRecord);
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to getById treatment record.` });
     }
@@ -28,21 +28,16 @@ class TreatmentRecordController {
     try {
       const id = await treatmentRecordService.create(req.body);
       res.status(201).json({ id: id });
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to create treatment record.` });
     }
   }
   async update(req: express.Request, res: express.Response) {
     try {
-      log(
-        await treatmentRecordService.update(
-          res.locals.treatmentRecord,
-          req.body
-        )
-      );
+      log(await treatmentRecordService.update(res.locals.treatmentRecord, req.body));
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to update treatment record.` });
     }
@@ -51,7 +46,7 @@ class TreatmentRecordController {
     try {
       log(await treatmentRecordService.delete(res.locals.treatmentRecord));
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to delete treatment record.` });
     }
@@ -60,7 +55,7 @@ class TreatmentRecordController {
     try {
       log(await treatmentRecordService.deleteAll());
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to delete treatment records.` });
     }

@@ -1,8 +1,9 @@
-import { DataTypes, Model } from "sequelize";
-import db from "../config/db.config";
-import { PostVaccineRecordDto } from "../interfaces/vaccine_record/post.vaccine.record.dto";
+import { DataTypes, Model } from 'sequelize';
+import db from '../config/db.config';
+import { PostVaccineRecordDto } from '../interfaces/vaccine_record/post.vaccine.record.dto';
 
 class VaccineRecord extends Model<PostVaccineRecordDto> {}
+
 VaccineRecord.init(
   {
     id: {
@@ -30,7 +31,7 @@ VaccineRecord.init(
       type: DataTypes.STRING,
     },
   },
-  { sequelize: db, modelName: "vaccine_record" }
+  { sequelize: db, modelName: 'vaccine_record' },
 );
 
 export default VaccineRecord;

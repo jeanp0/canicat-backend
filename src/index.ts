@@ -1,28 +1,28 @@
-import cors from "cors";
-import debug from "debug";
-import express from "express";
-import * as expressWinston from "express-winston";
-import * as http from "http";
-import * as winston from "winston";
-import { CommonRoutesConfig } from "./routes/common.routes.config";
-import db from "./config/db.config";
-import { VeterinaryRoutes } from "./routes/veterinary.routes.config";
-import { PetRoutes } from "./routes/pet.routes.config";
-import { UserRoutes } from "./routes/user.routes.config";
-import { DiseaseRecordRoutes } from "./routes/disease.record.routes.config";
-import { TreatmentRecordRoutes } from "./routes/treatment.record.routes.config";
-import { VaccineRecordRoutes } from "./routes/vaccine.record.routes.config";
+import cors from 'cors';
+import debug from 'debug';
+import express from 'express';
+import * as expressWinston from 'express-winston';
+import * as http from 'http';
+import * as winston from 'winston';
+import { CommonRoutesConfig } from './routes/common.routes.config';
+import db from './config/db.config';
+import { VeterinaryRoutes } from './routes/veterinary.routes.config';
+import { PetRoutes } from './routes/pet.routes.config';
+import { UserRoutes } from './routes/user.routes.config';
+import { DiseaseRecordRoutes } from './routes/disease.record.routes.config';
+import { TreatmentRecordRoutes } from './routes/treatment.record.routes.config';
+import { VaccineRecordRoutes } from './routes/vaccine.record.routes.config';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
 const PORT = 3000;
 const routes: Array<CommonRoutesConfig> = [];
-const debugLog: debug.IDebugger = debug("app");
+const debugLog: debug.IDebugger = debug('app');
 
 // se sincronizan los modelos de la instancia de la BDD
 // por ejemplo, aquí es cuando crea las tablas si no existen
 db.sync().then(() => {
-  debugLog("Connect to DB. All models synchronized.");
+  debugLog('Connect to DB. All models synchronized.');
 });
 
 // here we are adding middleware to parse all incoming requests as JSON
@@ -38,7 +38,7 @@ const loggerOptions: expressWinston.LoggerOptions = {
   format: winston.format.combine(
     winston.format.json(),
     winston.format.prettyPrint(),
-    winston.format.colorize({ all: true })
+    winston.format.colorize({ all: true }),
   ),
   meta: process.env.DEBUG ? true : false, // when not debugging, log requests as one-liners
 };
@@ -58,7 +58,7 @@ routes.push(new VaccineRecordRoutes(app));
 
 // this is a simple route to make sure everything is working properly
 const runningMessage = `Server running at http://localhost:${PORT}`;
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage);
 });
 

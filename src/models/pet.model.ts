@@ -1,9 +1,9 @@
-import { Model, DataTypes } from "sequelize";
-import db from "../config/db.config";
-import { PostPetDto } from "../interfaces/pet/post.pet.dto";
-import DiseaseRecord from "./disease.record.model";
-import TreatmentRecord from "./treatment.record.model";
-import VaccineRecord from "./vaccine.record.model";
+import { Model, DataTypes } from 'sequelize';
+import db from '../config/db.config';
+import { PostPetDto } from '../interfaces/pet/post.pet.dto';
+import DiseaseRecord from './disease.record.model';
+import TreatmentRecord from './treatment.record.model';
+import VaccineRecord from './vaccine.record.model';
 
 class Pet extends Model<PostPetDto> {}
 
@@ -35,8 +35,8 @@ Pet.init(
   },
   {
     sequelize: db, // connection instance
-    modelName: "pet",
-  }
+    modelName: 'pet',
+  },
 );
 
 Pet.hasOne(VaccineRecord);

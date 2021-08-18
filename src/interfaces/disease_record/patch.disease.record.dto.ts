@@ -1,3 +1,3 @@
-import { PostDiseaseRecordDto } from "./post.disease.record.dto";
+import { PostDiseaseRecordDto } from './post.disease.record.dto';
 
-export interface PatchDiseaseRecordDto extends Partial<PostDiseaseRecordDto> {}
+export type PatchDiseaseRecordDto = Partial<PostDiseaseRecordDto>;

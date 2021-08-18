@@ -1,11 +1,12 @@
-import { Model, DataTypes } from "sequelize";
-import db from "../config/db.config";
-import { PostVeterinaryDto } from "../interfaces/veterinary/post.veterinary.dto";
-import DiseaseRecord from "./disease.record.model";
-import TreatmentRecord from "./treatment.record.model";
-import VaccineRecord from "./vaccine.record.model";
+import { Model, DataTypes } from 'sequelize';
+import db from '../config/db.config';
+import { PostVeterinaryDto } from '../interfaces/veterinary/post.veterinary.dto';
+import DiseaseRecord from './disease.record.model';
+import TreatmentRecord from './treatment.record.model';
+import VaccineRecord from './vaccine.record.model';
 
 class Veterinary extends Model<PostVeterinaryDto> {}
+
 Veterinary.init(
   {
     id: {
@@ -31,9 +32,9 @@ Veterinary.init(
   },
   {
     sequelize: db, // connection instance
-    modelName: "veterinary",
+    modelName: 'veterinary',
     // tableName: "veterinaries", // by default is the plural of modelName
-  }
+  },
 );
 Veterinary.hasMany(DiseaseRecord);
 Veterinary.hasMany(TreatmentRecord);

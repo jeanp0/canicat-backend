@@ -1,10 +1,10 @@
-import { CRUD } from "../interfaces/crud.interface";
-import { v4 as uuidv4 } from "uuid";
-import { PatchTreatmentRecordDto } from "../interfaces/treatment_record/patch.treatment.record.dto";
+import { CRUD } from '../interfaces/crud.interface';
+import { v4 as uuidv4 } from 'uuid';
+import { PatchTreatmentRecordDto } from '../interfaces/treatment_record/patch.treatment.record.dto';
 
-import { PutTreatmentRecordDto } from "../interfaces/treatment_record/put.treatment.record.dto";
-import TreatmentRecord from "../models/treatment.record.model";
-import { PostTreatmentRecordDto } from "../interfaces/treatment_record/post.treatment.record.dto";
+import { PutTreatmentRecordDto } from '../interfaces/treatment_record/put.treatment.record.dto';
+import TreatmentRecord from '../models/treatment.record.model';
+import { PostTreatmentRecordDto } from '../interfaces/treatment_record/post.treatment.record.dto';
 
 class TreatmentRecordService implements CRUD {
   async read(limit: number | undefined, offset: number | undefined) {
@@ -22,10 +22,7 @@ class TreatmentRecordService implements CRUD {
     await TreatmentRecord.create({ ...resource, id });
     return id;
   }
-  async update(
-    record: TreatmentRecord,
-    resource: PutTreatmentRecordDto | PatchTreatmentRecordDto
-  ) {
+  async update(record: TreatmentRecord, resource: PutTreatmentRecordDto | PatchTreatmentRecordDto) {
     return record.update({ ...resource });
   }
   async delete(record: TreatmentRecord) {

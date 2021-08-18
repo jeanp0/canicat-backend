@@ -1,9 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
-import { CRUD } from "../interfaces/crud.interface";
-import User from "../models/user.model";
-import { PostUserDto } from "../interfaces/user/post.user.dto";
-import { PutUserDto } from "../interfaces/user/put.user.dto";
-import { PatchUserDto } from "../interfaces/user/patch.user.dto";
+import { v4 as uuidv4 } from 'uuid';
+import { CRUD } from '../interfaces/crud.interface';
+import User from '../models/user.model';
+import { PostUserDto } from '../interfaces/user/post.user.dto';
+import { PutUserDto } from '../interfaces/user/put.user.dto';
+import { PatchUserDto } from '../interfaces/user/patch.user.dto';
 
 class UserService implements CRUD {
   async read(limit: number | undefined, offset: number | undefined) {

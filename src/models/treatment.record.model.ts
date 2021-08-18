@@ -1,8 +1,9 @@
-import { DataTypes, Model } from "sequelize";
-import db from "../config/db.config";
-import { PostTreatmentRecordDto } from "../interfaces/treatment_record/post.treatment.record.dto";
+import { DataTypes, Model } from 'sequelize';
+import db from '../config/db.config';
+import { PostTreatmentRecordDto } from '../interfaces/treatment_record/post.treatment.record.dto';
 
 class TreatmentRecord extends Model<PostTreatmentRecordDto> {}
+
 TreatmentRecord.init(
   {
     id: {
@@ -34,7 +35,7 @@ TreatmentRecord.init(
       type: DataTypes.STRING,
     },
   },
-  { sequelize: db, modelName: "treatment_record" }
+  { sequelize: db, modelName: 'treatment_record' },
 );
 
 export default TreatmentRecord;

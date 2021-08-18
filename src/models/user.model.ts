@@ -1,7 +1,7 @@
-import { Model, DataTypes } from "sequelize";
-import db from "../config/db.config";
-import { PostUserDto } from "../interfaces/user/post.user.dto";
-import Pet from "./pet.model";
+import { Model, DataTypes } from 'sequelize';
+import db from '../config/db.config';
+import { PostUserDto } from '../interfaces/user/post.user.dto';
+import Pet from './pet.model';
 
 class User extends Model<PostUserDto> {}
 
@@ -40,8 +40,8 @@ User.init(
   },
   {
     sequelize: db, // connection instance
-    modelName: "user",
-  }
+    modelName: 'user',
+  },
 );
 
 User.hasMany(Pet);

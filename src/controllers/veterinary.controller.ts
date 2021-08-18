@@ -1,8 +1,8 @@
-import express from "express";
-import debug from "debug";
-import veterinaryService from "../services/veterinary.service";
+import express from 'express';
+import debug from 'debug';
+import veterinaryService from '../services/veterinary.service';
 
-const log: debug.IDebugger = debug("app:veterinary-controller");
+const log: debug.IDebugger = debug('app:veterinary-controller');
 
 class VeterinaryController {
   async readAll(req: express.Request, res: express.Response) {
@@ -11,7 +11,7 @@ class VeterinaryController {
       const offset = req.query?.offset as number | undefined;
       const data = await veterinaryService.read(limit, offset);
       res.status(200).json(data);
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to list veterinaries.` });
     }
@@ -19,7 +19,7 @@ class VeterinaryController {
   async read(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.veterinary);
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to getById veterinary.` });
     }
@@ -28,7 +28,7 @@ class VeterinaryController {
     try {
       const id = await veterinaryService.create(req.body);
       res.status(201).json({ id: id });
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to create veterinarie.` });
     }
@@ -37,7 +37,7 @@ class VeterinaryController {
     try {
       log(await veterinaryService.update(res.locals.veterinary, req.body));
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to update veterinarie.` });
     }
@@ -46,7 +46,7 @@ class VeterinaryController {
     try {
       log(await veterinaryService.delete(res.locals.veterinary));
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to delete veterinarie.` });
     }
@@ -55,7 +55,7 @@ class VeterinaryController {
     try {
       log(await veterinaryService.deleteAll());
       res.status(204).json();
-    } catch (err) {
+    } catch (err: any) {
       log(err.message);
       res.status(500).json({ message: `fail to delete veterinaries.` });
     }

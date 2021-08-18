@@ -1,3 +1,3 @@
-import { PutVaccineRecordDto } from "./put.vaccine.record.dto";
+import { PutVaccineRecordDto } from './put.vaccine.record.dto';
 
-export interface PatchVaccineRecordDto extends Partial<PutVaccineRecordDto> {}
+export type PatchVaccineRecordDto = Partial<PutVaccineRecordDto>;
