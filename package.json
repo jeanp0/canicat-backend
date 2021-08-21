@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node --unhandled-rejections=strict ./src/dist/index.js",
     "debug": "set DEBUG=* && npm run start",
-    "lint": "eslint src/**/*.ts --quiet --fix",
+    "lint": "eslint src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Arroyo, Bayona, Espinoza, Lino, Mendoza",
