@@ -5,4 +5,5 @@ export interface PutPetDto {
   race: string;
   sexo: string;
   color: string;
+  picture: string;
 }

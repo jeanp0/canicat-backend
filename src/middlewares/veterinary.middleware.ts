@@ -5,6 +5,7 @@ import veterinaryService from '../services/veterinary.service';
 const log: debug.IDebugger = debug('app:veterinary-controller');
 
 class VeterinaryMiddleware {
+
   async validateVeterinaryExistsByParams(req: express.Request, res: express.Response, next: express.NextFunction) {
     const { id } = req.params;
     const record = await veterinaryService.getById(id);

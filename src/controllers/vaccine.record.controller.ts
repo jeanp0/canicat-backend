@@ -5,6 +5,7 @@ import vaccineRecordService from '../services/vaccine.record.service';
 const log: debug.IDebugger = debug('app:vaccine-record-controller');
 
 class VaccineRecordController {
+
   async readAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -16,6 +17,7 @@ class VaccineRecordController {
       res.status(500).json({ message: `fail to list vaccine records.` });
     }
   }
+
   async read(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.vaccineRecord);
@@ -24,6 +26,7 @@ class VaccineRecordController {
       res.status(500).json({ message: `fail to getById vaccine record.` });
     }
   }
+
   async create(req: express.Request, res: express.Response) {
     try {
       const id = await vaccineRecordService.create(req.body);
@@ -33,6 +36,7 @@ class VaccineRecordController {
       res.status(500).json({ message: `fail to create vaccine record.` });
     }
   }
+
   async update(req: express.Request, res: express.Response) {
     try {
       log(await vaccineRecordService.update(res.locals.vaccineRecord, req.body));
@@ -42,6 +46,7 @@ class VaccineRecordController {
       res.status(500).json({ message: `fail to update vaccine record.` });
     }
   }
+
   async delete(req: express.Request, res: express.Response) {
     try {
       log(await vaccineRecordService.delete(res.locals.vaccineRecord));
@@ -51,6 +56,7 @@ class VaccineRecordController {
       res.status(500).json({ message: `fail to delete vaccine record.` });
     }
   }
+
   async deleteAll(req: express.Request, res: express.Response) {
     try {
       log(await vaccineRecordService.deleteAll());

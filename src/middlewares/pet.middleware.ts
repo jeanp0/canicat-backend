@@ -5,6 +5,7 @@ import petService from '../services/pet.service';
 const log: debug.IDebugger = debug('app:pet-controller');
 
 class PetMiddleware {
+
   async validatePetExists(req: express.Request, res: express.Response, next: express.NextFunction) {
     const { id } = req.params;
     const record = await petService.getById(id);

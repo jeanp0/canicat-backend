@@ -6,6 +6,7 @@ import { PutVeterinaryDto } from '../interfaces/veterinary/put.veterinary.dto';
 import { PatchVeterinaryDto } from '../interfaces/veterinary/patch.veterinary.dto';
 
 class VeterinaryService implements CRUD {
+
   async read(limit: number | undefined, offset: number | undefined) {
     return Veterinary.findAll({
       where: {},
@@ -13,20 +14,25 @@ class VeterinaryService implements CRUD {
       offset: offset && Number(offset),
     });
   }
+
   async getById(id: string) {
     return Veterinary.findOne({ where: { id } });
   }
+
   async create(resource: PostVeterinaryDto) {
     const id = uuidv4();
     await Veterinary.create({ ...resource, id });
     return id;
   }
+
   async update(record: Veterinary, resource: PutVeterinaryDto | PatchVeterinaryDto) {
     return record.update({ ...resource });
   }
+
   async delete(record: Veterinary) {
     return record.destroy();
   }
+
   async deleteAll() {
     return Veterinary.destroy({ truncate: true });
   }

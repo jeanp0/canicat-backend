@@ -5,6 +5,7 @@ import veterinaryService from '../services/veterinary.service';
 const log: debug.IDebugger = debug('app:veterinary-controller');
 
 class VeterinaryController {
+
   async readAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -16,6 +17,7 @@ class VeterinaryController {
       res.status(500).json({ message: `fail to list veterinaries.` });
     }
   }
+
   async read(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.veterinary);
@@ -24,6 +26,7 @@ class VeterinaryController {
       res.status(500).json({ message: `fail to getById veterinary.` });
     }
   }
+
   async create(req: express.Request, res: express.Response) {
     try {
       const id = await veterinaryService.create(req.body);
@@ -33,6 +36,7 @@ class VeterinaryController {
       res.status(500).json({ message: `fail to create veterinarie.` });
     }
   }
+
   async update(req: express.Request, res: express.Response) {
     try {
       log(await veterinaryService.update(res.locals.veterinary, req.body));
@@ -42,6 +46,7 @@ class VeterinaryController {
       res.status(500).json({ message: `fail to update veterinarie.` });
     }
   }
+
   async delete(req: express.Request, res: express.Response) {
     try {
       log(await veterinaryService.delete(res.locals.veterinary));
@@ -51,6 +56,7 @@ class VeterinaryController {
       res.status(500).json({ message: `fail to delete veterinarie.` });
     }
   }
+
   async deleteAll(req: express.Request, res: express.Response) {
     try {
       log(await veterinaryService.deleteAll());

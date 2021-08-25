@@ -21,6 +21,7 @@ export class PetRoutes extends CommonRoutesConfig {
         body('sexo').isString().optional(),
         body('color').isString().optional(),
         body('userId').isUUID(4),
+        body('picture').isString().optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         petController.create,
       )
@@ -37,6 +38,7 @@ export class PetRoutes extends CommonRoutesConfig {
         body('sexo').isString(),
         body('color').isString(),
         body('userId').isUUID(4),
+        body('picture').isString(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         petController.update,
       )
@@ -47,6 +49,7 @@ export class PetRoutes extends CommonRoutesConfig {
         body('sexo').isString().optional(),
         body('color').isString().optional(),
         body('userId').isUUID(4).optional(),
+        body('picture').isString().optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         petController.update,
       )

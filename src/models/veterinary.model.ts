@@ -5,7 +5,7 @@ import DiseaseRecord from './disease.record.model';
 import TreatmentRecord from './treatment.record.model';
 import VaccineRecord from './vaccine.record.model';
 
-class Veterinary extends Model<PostVeterinaryDto> {}
+class Veterinary extends Model<PostVeterinaryDto> { }
 
 Veterinary.init(
   {

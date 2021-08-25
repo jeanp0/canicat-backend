@@ -5,4 +5,5 @@ export interface PostPetDto {
   race: string;
   sexo?: string;
   color?: string;
+  picture?: string;
 }

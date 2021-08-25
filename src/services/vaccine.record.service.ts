@@ -6,6 +6,7 @@ import { PutVaccineRecordDto } from '../interfaces/vaccine_record/put.vaccine.re
 import VaccineRecord from '../models/vaccine.record.model';
 
 class VaccineRecordService implements CRUD {
+
   async read(limit: number | undefined, offset: number | undefined) {
     return VaccineRecord.findAll({
       where: {},
@@ -13,20 +14,25 @@ class VaccineRecordService implements CRUD {
       offset: offset && Number(offset),
     });
   }
+
   async getById(id: string) {
     return VaccineRecord.findOne({ where: { id } });
   }
+
   async create(resource: PostVaccineRecordDto) {
     const id = uuidv4();
     await VaccineRecord.create({ ...resource, id });
     return id;
   }
+
   async update(record: VaccineRecord, resource: PutVaccineRecordDto | PatchVaccineRecordDto) {
     return record.update({ ...resource });
   }
+
   async delete(record: VaccineRecord) {
     return record.destroy();
   }
+
   async deleteAll() {
     return VaccineRecord.destroy({ truncate: true });
   }

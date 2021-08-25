@@ -12,6 +12,8 @@ import { UserRoutes } from './routes/user.routes.config';
 import { DiseaseRecordRoutes } from './routes/disease.record.routes.config';
 import { TreatmentRecordRoutes } from './routes/treatment.record.routes.config';
 import { VaccineRecordRoutes } from './routes/vaccine.record.routes.config';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -26,7 +28,19 @@ db.sync().then(() => {
 });
 
 // here we are adding middleware to parse all incoming requests as JSON
-app.use(express.json());
+app.use(
+  express.json({
+    limit: '20mb',
+  }),
+);
+
+// for parsing application/x-www-form-urlencoded
+app.use(
+  express.urlencoded({
+    limit: '20mb',
+    extended: true,
+  }),
+);
 
 // here we are adding middleware to allow cross-origin requests
 app.use(cors());
@@ -56,11 +70,16 @@ routes.push(new DiseaseRecordRoutes(app));
 routes.push(new TreatmentRecordRoutes(app));
 routes.push(new VaccineRecordRoutes(app));
 
+// serve static files from "public" directory
+// example: http://localhost:3000/pet_pictures/dogo.jpg
+app.use(express.static('public'));
+
 // this is a simple route to make sure everything is working properly
 const runningMessage = `Server running at http://localhost:${PORT}`;
 app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage);
 });
+
 
 // the already configured server listens on the corresponding port
 server.listen(PORT, () => {

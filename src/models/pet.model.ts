@@ -5,7 +5,7 @@ import DiseaseRecord from './disease.record.model';
 import TreatmentRecord from './treatment.record.model';
 import VaccineRecord from './vaccine.record.model';
 
-class Pet extends Model<PostPetDto> {}
+class Pet extends Model<PostPetDto> { }
 
 Pet.init(
   {
@@ -30,6 +30,9 @@ Pet.init(
       type: DataTypes.STRING,
     },
     color: {
+      type: DataTypes.STRING,
+    },
+    picture: {
       type: DataTypes.STRING,
     },
   },

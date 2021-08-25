@@ -5,6 +5,7 @@ import diseaseRecordService from '../services/disease.record.service';
 const log: debug.IDebugger = debug('app:disease-record-controller');
 
 class DiseaseRecordMiddleware {
+
   async validateDiseaseRecordExistsByParams(req: express.Request, res: express.Response, next: express.NextFunction) {
     const { id } = req.params;
     const record = await diseaseRecordService.getById(id);

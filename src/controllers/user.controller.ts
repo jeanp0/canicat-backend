@@ -5,6 +5,7 @@ import userService from '../services/user.service';
 const log: debug.IDebugger = debug('app:user-controller');
 
 class UserController {
+
   async readAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -16,6 +17,7 @@ class UserController {
       res.status(500).json({ msg: `fail to list users.` });
     }
   }
+
   async read(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.user);
@@ -24,6 +26,7 @@ class UserController {
       res.status(500).json({ msg: `fail to getById user.` });
     }
   }
+
   async create(req: express.Request, res: express.Response) {
     try {
       const id = await userService.create(req.body);
@@ -33,6 +36,7 @@ class UserController {
       res.status(500).json({ msg: `fail to create user.` });
     }
   }
+
   async update(req: express.Request, res: express.Response) {
     try {
       log(await userService.update(res.locals.user, req.body));
@@ -42,6 +46,7 @@ class UserController {
       res.status(500).json({ msg: `fail to update user.` });
     }
   }
+
   async delete(req: express.Request, res: express.Response) {
     try {
       log(await userService.delete(res.locals.user));
@@ -51,6 +56,7 @@ class UserController {
       res.status(500).json({ msg: `fail to delete user.` });
     }
   }
+
   async deleteAll(req: express.Request, res: express.Response) {
     try {
       log(await userService.deleteAll());

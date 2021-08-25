@@ -5,6 +5,7 @@ import treatmentRecordService from '../services/treatment.record.service';
 const log: debug.IDebugger = debug('app:treatment-record-controller');
 
 class TreatmentRecordController {
+
   async readAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -16,6 +17,7 @@ class TreatmentRecordController {
       res.status(500).json({ message: `fail to list treatment records.` });
     }
   }
+
   async read(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.treatmentRecord);
@@ -24,6 +26,7 @@ class TreatmentRecordController {
       res.status(500).json({ message: `fail to getById treatment record.` });
     }
   }
+
   async create(req: express.Request, res: express.Response) {
     try {
       const id = await treatmentRecordService.create(req.body);
@@ -33,6 +36,7 @@ class TreatmentRecordController {
       res.status(500).json({ message: `fail to create treatment record.` });
     }
   }
+
   async update(req: express.Request, res: express.Response) {
     try {
       log(await treatmentRecordService.update(res.locals.treatmentRecord, req.body));
@@ -42,6 +46,7 @@ class TreatmentRecordController {
       res.status(500).json({ message: `fail to update treatment record.` });
     }
   }
+
   async delete(req: express.Request, res: express.Response) {
     try {
       log(await treatmentRecordService.delete(res.locals.treatmentRecord));
@@ -51,6 +56,7 @@ class TreatmentRecordController {
       res.status(500).json({ message: `fail to delete treatment record.` });
     }
   }
+
   async deleteAll(req: express.Request, res: express.Response) {
     try {
       log(await treatmentRecordService.deleteAll());

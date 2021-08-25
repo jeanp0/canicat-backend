@@ -6,6 +6,7 @@ import { PutUserDto } from '../interfaces/user/put.user.dto';
 import { PatchUserDto } from '../interfaces/user/patch.user.dto';
 
 class UserService implements CRUD {
+
   async read(limit: number | undefined, offset: number | undefined) {
     return User.findAll({
       where: {},

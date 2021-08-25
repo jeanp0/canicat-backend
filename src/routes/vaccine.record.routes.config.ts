@@ -7,6 +7,7 @@ import veterinaryMiddleware from '../middlewares/veterinary.middleware';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class VaccineRecordRoutes extends CommonRoutesConfig {
+
   constructor(app: express.Application) {
     super(app, 'VaccineRecordRoutes');
   }

@@ -5,6 +5,7 @@ import vaccineRecordService from '../services/vaccine.record.service';
 const log: debug.IDebugger = debug('app:vaccine-record-controller');
 
 class VaccineRecordMiddleware {
+
   async validateVaccineRecordExistsByParams(req: express.Request, res: express.Response, next: express.NextFunction) {
     const { id } = req.params;
     const record = await vaccineRecordService.getById(id);

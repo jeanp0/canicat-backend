@@ -6,6 +6,7 @@ import { PatchDiseaseRecordDto } from '../interfaces/disease_record/patch.diseas
 import { PutDiseaseRecordDto } from '../interfaces/disease_record/put.disease.record.dto';
 
 class DiseaseRecordService implements CRUD {
+
   async read(limit: number | undefined, offset: number | undefined) {
     return DiseaseRecord.findAll({
       where: {},
@@ -13,20 +14,25 @@ class DiseaseRecordService implements CRUD {
       offset: offset && Number(offset),
     });
   }
+
   async getById(id: string) {
     return DiseaseRecord.findOne({ where: { id } });
   }
+
   async create(resource: PostDiseaseRecordDto) {
     const id = uuidv4();
     await DiseaseRecord.create({ ...resource, id });
     return id;
   }
+
   async update(record: DiseaseRecord, resource: PutDiseaseRecordDto | PatchDiseaseRecordDto) {
     return record.update({ ...resource });
   }
+
   async delete(record: DiseaseRecord) {
     return record.destroy();
   }
+
   async deleteAll() {
     return DiseaseRecord.destroy({ truncate: true });
   }
