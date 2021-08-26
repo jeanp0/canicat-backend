@@ -7,7 +7,7 @@ import { PatchVeterinaryDto } from '../interfaces/veterinary/patch.veterinary.dt
 
 class VeterinaryService implements CRUD {
 
-  async read(limit: number | undefined, offset: number | undefined) {
+  async getAll(limit: number | undefined, offset: number | undefined) {
     return Veterinary.findAll({
       where: {},
       limit: limit && Number(limit),

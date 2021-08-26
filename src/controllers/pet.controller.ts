@@ -1,16 +1,16 @@
-import express from 'express';
 import debug from 'debug';
+import express from 'express';
 import petService from '../services/pet.service';
 
 const log: debug.IDebugger = debug('app:pet-controller');
 
 class PetController {
 
-  async readAll(req: express.Request, res: express.Response) {
+  async getAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
       const offset = req.query?.offset as number | undefined;
-      const data = await petService.read(limit, offset);
+      const data = await petService.getAll(limit, offset);
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
@@ -18,7 +18,7 @@ class PetController {
     }
   }
 
-  async read(req: express.Request, res: express.Response) {
+  async get(req: express.Request, res: express.Response) {
     try {
       res.status(200).json(res.locals.pet);
     } catch (err: any) {

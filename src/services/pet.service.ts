@@ -1,15 +1,13 @@
-import { v4 as uuidv4 } from 'uuid';
-import Pet from '../models/pet.model';
-import { PostPetDto } from '../interfaces/pet/post.pet.dto';
-import { PutPetDto } from '../interfaces/pet/put.pet.dto';
-import { PatchPetDto } from '../interfaces/pet/patch.pet.dto';
-import { CRUD } from '../interfaces/crud.interface';
 import * as fs from 'fs';
+import { v4 as uuidv4 } from 'uuid';
+import { CRUD } from '../interfaces/crud.interface';
+import Pet from '../models/pet.model';
+import { PetCreationAttributes } from './../interfaces/pet/pet.attributes';
 
 class PetService implements CRUD {
   readonly PET_PICTURES_PATH = '/pet_pictures';
 
-  async read(limit: number | undefined, offset: number | undefined) {
+  async getAll(limit: number | undefined, offset: number | undefined) {
     return Pet.findAll({
       where: {},
       limit: limit && Number(limit),
@@ -21,7 +19,7 @@ class PetService implements CRUD {
     return Pet.findOne({ where: { id } });
   }
 
-  async create(resource: PostPetDto) {
+  async create(resource: PetCreationAttributes) {
     const id = uuidv4();
     if (resource.picture) {
       resource.picture = this.writePicture(`${id}`, resource.picture);
@@ -30,7 +28,7 @@ class PetService implements CRUD {
     return id;
   }
 
-  async update(record: Pet, resource: PutPetDto | PatchPetDto) {
+  async update(record: Pet, resource: PetCreationAttributes) {
     if (resource.picture) {
       resource.picture = this.writePicture(`${record.get('id')}`, resource.picture);
     }

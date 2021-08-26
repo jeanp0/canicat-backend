@@ -7,7 +7,7 @@ import VaccineRecord from '../models/vaccine.record.model';
 
 class VaccineRecordService implements CRUD {
 
-  async read(limit: number | undefined, offset: number | undefined) {
+  async getAll(limit: number | undefined, offset: number | undefined) {
     return VaccineRecord.findAll({
       where: {},
       limit: limit && Number(limit),

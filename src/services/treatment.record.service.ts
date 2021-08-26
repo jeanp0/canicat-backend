@@ -8,7 +8,7 @@ import { PostTreatmentRecordDto } from '../interfaces/treatment_record/post.trea
 
 class TreatmentRecordService implements CRUD {
 
-  async read(limit: number | undefined, offset: number | undefined) {
+  async getAll(limit: number | undefined, offset: number | undefined) {
     return TreatmentRecord.findAll({
       where: {},
       limit: limit && Number(limit),

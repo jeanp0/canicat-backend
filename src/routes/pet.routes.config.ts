@@ -1,9 +1,9 @@
 import express from 'express';
-import { CommonRoutesConfig } from './common.routes.config';
-import petMiddleware from '../middlewares/pet.middleware';
 import { body } from 'express-validator';
-import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import petController from '../controllers/pet.controller';
+import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
+import petMiddleware from '../middlewares/pet.middleware';
+import { CommonRoutesConfig } from './common.routes.config';
 
 export class PetRoutes extends CommonRoutesConfig {
   constructor(app: express.Application) {
@@ -13,7 +13,7 @@ export class PetRoutes extends CommonRoutesConfig {
   configureRoutes(): express.Application {
     this.app
       .route('/api/pets')
-      .get(petController.readAll)
+      .get(petController.getAll)
       .post(
         body('name').isString(),
         body('age').isInt().optional(),
@@ -23,14 +23,15 @@ export class PetRoutes extends CommonRoutesConfig {
         body('userId').isUUID(4),
         body('picture').isString().optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
+        petMiddleware.validateUserExistsByBody,
         petController.create,
       )
       .delete(petController.deleteAll);
 
     this.app
       .route('/api/pets/:id')
-      .all(petMiddleware.validatePetExists)
-      .get(petController.read)
+      .all(petMiddleware.validatePetExistsByParams)
+      .get(petController.get)
       .put(
         body('name').isString(),
         body('age').isInt(),
@@ -40,6 +41,7 @@ export class PetRoutes extends CommonRoutesConfig {
         body('userId').isUUID(4),
         body('picture').isString(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
+        petMiddleware.validateUserExistsByBody,
         petController.update,
       )
       .patch(

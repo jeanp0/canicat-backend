@@ -1,11 +1,23 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '../config/db.config';
-import { PostPetDto } from '../interfaces/pet/post.pet.dto';
+import { PetAttributes } from '../interfaces/pet/pet.attributes';
+import { PetCreationAttributes } from './../interfaces/pet/pet.attributes';
 import DiseaseRecord from './disease.record.model';
 import TreatmentRecord from './treatment.record.model';
 import VaccineRecord from './vaccine.record.model';
 
-class Pet extends Model<PostPetDto> { }
+class Pet extends Model<PetAttributes, PetCreationAttributes> implements PetAttributes {
+  id!: string;
+  name!: string;
+  species!: string;
+  race!: string;
+  sexo!: string | null;
+  color!: string | null;
+  picture!: string | null;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+}
 
 Pet.init(
   {
@@ -19,8 +31,9 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
-      type: DataTypes.INTEGER,
+    species: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     race: {
       type: DataTypes.STRING,
@@ -38,9 +51,10 @@ Pet.init(
   },
   {
     sequelize: db, // connection instance
-    modelName: 'pet',
   },
 );
+
+// Pet.belongsTo(User);
 
 Pet.hasOne(VaccineRecord);
 Pet.hasOne(TreatmentRecord);

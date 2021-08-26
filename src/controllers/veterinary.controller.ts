@@ -10,7 +10,7 @@ class VeterinaryController {
     try {
       const limit = req.query?.limit as number | undefined;
       const offset = req.query?.offset as number | undefined;
-      const data = await veterinaryService.read(limit, offset);
+      const data = await veterinaryService.getAll(limit, offset);
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);

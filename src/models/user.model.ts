@@ -1,9 +1,32 @@
-import { Model, DataTypes } from 'sequelize';
+import { Association, DataTypes, HasManyAddAssociationMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, Model } from 'sequelize';
 import db from '../config/db.config';
-import { PostUserDto } from '../interfaces/user/post.user.dto';
+import { UserAttributes, UserCreationAttributes } from './../interfaces/user/user.attributes';
 import Pet from './pet.model';
 
-class User extends Model<PostUserDto> {}
+class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+  id!: string;
+  email!: string;
+  password!: string;
+  firstname!: string;
+  lastname!: string | null;
+  dni!: string;
+  telf!: string | null;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+
+  public getPets!: HasManyGetAssociationsMixin<Pet>;
+  public addPet!: HasManyAddAssociationMixin<Pet, string>;
+  public hasPet!: HasManyHasAssociationMixin<Pet, string>;
+  public countPets!: HasManyCountAssociationsMixin;
+  public createPet!: HasManyCreateAssociationMixin<Pet>;
+
+  public readonly pets?: Pet[];
+
+  public static associations: {
+    pets: Association<User, Pet>;
+  };
+}
 
 User.init(
   {
@@ -40,10 +63,14 @@ User.init(
   },
   {
     sequelize: db, // connection instance
-    modelName: 'user',
   },
 );
 
-User.hasMany(Pet);
+User.hasMany(Pet, {
+  sourceKey: 'id',
+  foreignKey: 'userId',
+  as: 'pets',
+});
+// User.hasMany(Pet);
 
 export default User;

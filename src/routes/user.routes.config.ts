@@ -1,9 +1,9 @@
 import express from 'express';
-import { CommonRoutesConfig } from './common.routes.config';
 import { body } from 'express-validator';
-import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import userController from '../controllers/user.controller';
+import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import userMiddleware from '../middlewares/user.middleware';
+import { CommonRoutesConfig } from './common.routes.config';
 
 export class UserRoutes extends CommonRoutesConfig {
   constructor(app: express.Application) {
@@ -13,7 +13,7 @@ export class UserRoutes extends CommonRoutesConfig {
   configureRoutes(): express.Application {
     this.app
       .route('/api/users')
-      .get(userController.readAll)
+      .get(userController.getAll)
       .post(
         body('email').isEmail(),
         body('password').isString(),
@@ -28,8 +28,8 @@ export class UserRoutes extends CommonRoutesConfig {
 
     this.app
       .route('/api/users/:id')
-      .all(userMiddleware.validateUserExists)
-      .get(userController.read)
+      .all(userMiddleware.validateUserExistsByParams)
+      .get(userController.get)
       .put(
         body('email').isEmail(),
         body('password').isString(),
@@ -51,6 +51,12 @@ export class UserRoutes extends CommonRoutesConfig {
         userController.update,
       )
       .delete(userController.delete);
+
+    this.app
+      .route('/api/users/:id/pets')
+      .get(
+        userMiddleware.validateUserExistsByParams,
+        userController.getPets);
 
     return this.app;
   }

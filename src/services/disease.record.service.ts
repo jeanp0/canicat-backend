@@ -7,7 +7,7 @@ import { PutDiseaseRecordDto } from '../interfaces/disease_record/put.disease.re
 
 class DiseaseRecordService implements CRUD {
 
-  async read(limit: number | undefined, offset: number | undefined) {
+  async getAll(limit: number | undefined, offset: number | undefined) {
     return DiseaseRecord.findAll({
       where: {},
       limit: limit && Number(limit),
