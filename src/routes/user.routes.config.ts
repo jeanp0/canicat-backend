@@ -3,16 +3,18 @@ import { body } from 'express-validator';
 import userController from '../controllers/user.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import userMiddleware from '../middlewares/user.middleware';
+import { BASE_URI, PETS_URI, USERS_URI } from './../config/routes.config';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class UserRoutes extends CommonRoutesConfig {
+
   constructor(app: express.Application) {
     super(app, 'UserRoutes');
   }
 
   configureRoutes(): express.Application {
     this.app
-      .route('/api/users')
+      .route(`${BASE_URI}${USERS_URI}`)
       .get(userController.getAll)
       .post(
         body('email').isEmail(),
@@ -27,7 +29,7 @@ export class UserRoutes extends CommonRoutesConfig {
       .delete(userController.deleteAll);
 
     this.app
-      .route('/api/users/:id')
+      .route(`${BASE_URI}${USERS_URI}/:id`)
       .all(userMiddleware.validateUserExistsByParams)
       .get(userController.get)
       .put(
@@ -53,7 +55,7 @@ export class UserRoutes extends CommonRoutesConfig {
       .delete(userController.delete);
 
     this.app
-      .route('/api/users/:id/pets')
+      .route(`${BASE_URI}${USERS_URI}/:id${PETS_URI}`)
       .get(
         userMiddleware.validateUserExistsByParams,
         userController.getPets);

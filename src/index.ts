@@ -5,6 +5,7 @@ import * as expressWinston from 'express-winston';
 import * as http from 'http';
 import * as winston from 'winston';
 import db from './config/db.config';
+import { PORT } from './config/routes.config';
 import { AuthRoutes } from './routes/auth.routes.config';
 import { CommonRoutesConfig } from './routes/common.routes.config';
 import { DiseaseRecordRoutes } from './routes/disease.record.routes.config';
@@ -15,7 +16,6 @@ import { VaccineRecordRoutes } from './routes/vaccine.record.routes.config';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
-const PORT = 3000;
 const routes: Array<CommonRoutesConfig> = [];
 const debugLog: debug.IDebugger = debug('app');
 

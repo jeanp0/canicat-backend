@@ -3,6 +3,7 @@ import { body } from 'express-validator';
 import vaccineRecordController from '../controllers/vaccine.record.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import vaccineRecordMiddleware from '../middlewares/vaccine.record.validation.middleware';
+import { BASE_URI, VACCINES_URI } from './../config/routes.config';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class VaccineRecordRoutes extends CommonRoutesConfig {
@@ -13,7 +14,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
 
   configureRoutes(): express.Application {
     this.app
-      .route('/api/vaccine-records')
+      .route(`${BASE_URI}${VACCINES_URI}`)
       .get(vaccineRecordController.readAll)
       .post(
         // veterinaryMiddleware.validateVeterinaryExistsByBody,
@@ -29,7 +30,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
       .delete(vaccineRecordController.deleteAll);
 
     this.app
-      .route('/api/vaccine-records/:id')
+      .route(`${BASE_URI}${VACCINES_URI}/:id`)
       .all(vaccineRecordMiddleware.validateVaccineRecordExistsByParams)
       .get(vaccineRecordController.read)
       .put(

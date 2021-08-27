@@ -3,16 +3,18 @@ import { body } from 'express-validator';
 import petController from '../controllers/pet.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import petMiddleware from '../middlewares/pet.middleware';
+import { BASE_URI, PETS_URI } from './../config/routes.config';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class PetRoutes extends CommonRoutesConfig {
+
   constructor(app: express.Application) {
     super(app, 'PetRoutes');
   }
 
   configureRoutes(): express.Application {
     this.app
-      .route('/api/pets')
+      .route(`${BASE_URI}${PETS_URI}`)
       .get(petController.getAll)
       .post(
         body('name').isString(),
@@ -29,7 +31,7 @@ export class PetRoutes extends CommonRoutesConfig {
       .delete(petController.deleteAll);
 
     this.app
-      .route('/api/pets/:id')
+      .route(`${BASE_URI}${PETS_URI}/:id`)
       .all(petMiddleware.validatePetExistsByParams)
       .get(petController.get)
       .put(

@@ -3,6 +3,7 @@ import { body } from 'express-validator';
 import authController from '../controllers/auth.controller';
 import authMiddleware from '../middlewares/auth.middleware';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
+import { BASE_URI, LOGIN_URI } from './../config/routes.config';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class AuthRoutes extends CommonRoutesConfig {
@@ -12,7 +13,7 @@ export class AuthRoutes extends CommonRoutesConfig {
   }
 
   configureRoutes(): express.Application {
-    this.app.post(`/api/auth/login`,
+    this.app.post(`${BASE_URI}${LOGIN_URI}`,
       [
         body('email').isEmail(),
         body('password').isString(),
