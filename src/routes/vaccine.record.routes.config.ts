@@ -3,7 +3,6 @@ import { body } from 'express-validator';
 import vaccineRecordController from '../controllers/vaccine.record.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import vaccineRecordMiddleware from '../middlewares/vaccine.record.validation.middleware';
-import veterinaryMiddleware from '../middlewares/veterinary.middleware';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class VaccineRecordRoutes extends CommonRoutesConfig {
@@ -17,7 +16,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
       .route('/api/vaccine-records')
       .get(vaccineRecordController.readAll)
       .post(
-        veterinaryMiddleware.validateVeterinaryExistsByBody,
+        // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('name').isString(),
         body('type').isString(),
         body('lastVaccineDate').isDate(),
@@ -34,7 +33,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
       .all(vaccineRecordMiddleware.validateVaccineRecordExistsByParams)
       .get(vaccineRecordController.read)
       .put(
-        veterinaryMiddleware.validateVeterinaryExistsByBody,
+        // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('name').isString(),
         body('type').isString(),
         body('lastVaccineDate').isDate(),

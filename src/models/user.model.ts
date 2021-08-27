@@ -70,6 +70,7 @@ User.hasMany(Pet, {
   sourceKey: 'id',
   foreignKey: 'userId',
   as: 'pets',
+  onDelete: 'CASCADE',
 });
 // User.hasMany(Pet);
 

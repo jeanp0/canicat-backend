@@ -3,9 +3,8 @@ import { body } from 'express-validator';
 import treatmentRecordController from '../controllers/treatment.record.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import treatmentRecordMiddleware from '../middlewares/treatment.record.middleware';
-import veterinaryMiddleware from '../middlewares/veterinary.middleware';
-
 import { CommonRoutesConfig } from './common.routes.config';
+
 
 export class TreatmentRecordRoutes extends CommonRoutesConfig {
 
@@ -18,7 +17,7 @@ export class TreatmentRecordRoutes extends CommonRoutesConfig {
       .route('/api/treatment-records')
       .get(treatmentRecordController.readAll)
       .post(
-        veterinaryMiddleware.validateVeterinaryExistsByBody,
+        // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('type').isString(),
         body('productName').isString(),
         body('lastTreatmentDate').isDate(),
@@ -35,7 +34,7 @@ export class TreatmentRecordRoutes extends CommonRoutesConfig {
       .all(treatmentRecordMiddleware.validateTreatmentRecordExistsByParams)
       .get(treatmentRecordController.read)
       .put(
-        veterinaryMiddleware.validateVeterinaryExistsByBody,
+        // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('type').isString(),
         body('productName').isString(),
         body('lastTreatmentDate').isDate(),

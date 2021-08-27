@@ -54,8 +54,6 @@ Pet.init(
   },
 );
 
-// Pet.belongsTo(User);
-
 Pet.hasOne(VaccineRecord);
 Pet.hasOne(TreatmentRecord);
 Pet.hasOne(DiseaseRecord);

@@ -1,5 +1,5 @@
-import express from 'express';
 import debug from 'debug';
+import express from 'express';
 import vaccineRecordService from '../services/vaccine.record.service';
 
 const log: debug.IDebugger = debug('app:vaccine-record-controller');
@@ -14,7 +14,7 @@ class VaccineRecordController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to list vaccine records.` });
+      res.status(500).json({ error: `fail to list vaccine records.` });
     }
   }
 
@@ -23,7 +23,7 @@ class VaccineRecordController {
       res.status(200).json(res.locals.vaccineRecord);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to getById vaccine record.` });
+      res.status(500).json({ error: `fail to getById vaccine record.` });
     }
   }
 
@@ -33,7 +33,7 @@ class VaccineRecordController {
       res.status(201).json({ id: id });
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to create vaccine record.` });
+      res.status(500).json({ error: `fail to create vaccine record.` });
     }
   }
 
@@ -43,7 +43,7 @@ class VaccineRecordController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to update vaccine record.` });
+      res.status(500).json({ error: `fail to update vaccine record.` });
     }
   }
 
@@ -53,7 +53,7 @@ class VaccineRecordController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to delete vaccine record.` });
+      res.status(500).json({ error: `fail to delete vaccine record.` });
     }
   }
 
@@ -63,7 +63,7 @@ class VaccineRecordController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to delete vaccine records.` });
+      res.status(500).json({ error: `fail to delete vaccine records.` });
     }
   }
 }

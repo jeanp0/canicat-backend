@@ -12,6 +12,7 @@
   "author": "Arroyo, Bayona, Espinoza, Lino, Mendoza",
   "license": "ISC",
   "dependencies": {
+    "@types/argon2": "^0.15.0",
     "argon2": "^0.28.2",
     "cors": "^2.8.5",
     "debug": "^4.3.2",

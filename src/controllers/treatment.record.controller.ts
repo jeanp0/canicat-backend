@@ -1,5 +1,5 @@
-import express from 'express';
 import debug from 'debug';
+import express from 'express';
 import treatmentRecordService from '../services/treatment.record.service';
 
 const log: debug.IDebugger = debug('app:treatment-record-controller');
@@ -14,7 +14,7 @@ class TreatmentRecordController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to list treatment records.` });
+      res.status(500).json({ error: `fail to list treatment records.` });
     }
   }
 
@@ -23,7 +23,7 @@ class TreatmentRecordController {
       res.status(200).json(res.locals.treatmentRecord);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to getById treatment record.` });
+      res.status(500).json({ error: `fail to getById treatment record.` });
     }
   }
 
@@ -33,7 +33,7 @@ class TreatmentRecordController {
       res.status(201).json({ id: id });
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to create treatment record.` });
+      res.status(500).json({ error: `fail to create treatment record.` });
     }
   }
 
@@ -43,7 +43,7 @@ class TreatmentRecordController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to update treatment record.` });
+      res.status(500).json({ error: `fail to update treatment record.` });
     }
   }
 
@@ -53,7 +53,7 @@ class TreatmentRecordController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to delete treatment record.` });
+      res.status(500).json({ error: `fail to delete treatment record.` });
     }
   }
 
@@ -63,7 +63,7 @@ class TreatmentRecordController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ message: `fail to delete treatment records.` });
+      res.status(500).json({ error: `fail to delete treatment records.` });
     }
   }
 }

@@ -3,11 +3,10 @@ import { body } from 'express-validator';
 import diseaseRecordController from '../controllers/disease.record.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import diseaseRecordMiddleware from '../middlewares/disease.record.middleware';
-import veterinaryMiddleware from '../middlewares/veterinary.middleware';
-
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class DiseaseRecordRoutes extends CommonRoutesConfig {
+
   constructor(app: express.Application) {
     super(app, 'DiseaseRoutes');
   }
@@ -17,7 +16,7 @@ export class DiseaseRecordRoutes extends CommonRoutesConfig {
       .route('/api/disease-records')
       .get(diseaseRecordController.readAll)
       .post(
-        veterinaryMiddleware.validateVeterinaryExistsByBody,
+        // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('name').isString(),
         body('description').isString().optional(),
         body('veterinaryId').isUUID(4),
@@ -31,7 +30,7 @@ export class DiseaseRecordRoutes extends CommonRoutesConfig {
       .all(diseaseRecordMiddleware.validateDiseaseRecordExistsByParams)
       .get(diseaseRecordController.read)
       .put(
-        veterinaryMiddleware.validateVeterinaryExistsByBody,
+        // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('name').isString(),
         body('description').isString(),
         body('veterinaryId').isUUID(4),

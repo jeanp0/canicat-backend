@@ -10,7 +10,7 @@ class UserMiddleware {
     const { id } = req.params;
     const record = await userService.getById(id);
     if (!record) {
-      return res.status(404).send({ msg: `User ${id} not found` });
+      return res.status(404).send({ error: `User ${id} not found` });
     }
     res.locals.user = record;
     next();

@@ -14,7 +14,7 @@ class PetController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to list pets.` });
+      res.status(500).json({ error: `fail to list pets.` });
     }
   }
 
@@ -23,7 +23,7 @@ class PetController {
       res.status(200).json(res.locals.pet);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to getById pet.` });
+      res.status(500).json({ error: `fail to getById pet.` });
     }
   }
 
@@ -33,7 +33,7 @@ class PetController {
       res.status(201).json({ id: id });
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to create pet.` });
+      res.status(500).json({ error: `fail to create pet.` });
     }
   }
 
@@ -43,7 +43,7 @@ class PetController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to update pet.` });
+      res.status(500).json({ error: `fail to update pet.` });
     }
   }
 
@@ -53,7 +53,7 @@ class PetController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to delete pet.` });
+      res.status(500).json({ error: `fail to delete pet.` });
     }
   }
 
@@ -63,7 +63,7 @@ class PetController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to delete pets.` });
+      res.status(500).json({ error: `fail to delete pets.` });
     }
   }
 }

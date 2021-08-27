@@ -14,7 +14,7 @@ class UserController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to list users.` });
+      res.status(500).json({ error: `fail to list users.` });
     }
   }
 
@@ -23,7 +23,7 @@ class UserController {
       res.status(200).json(res.locals.user);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to getById user.` });
+      res.status(500).json({ error: `fail to getById user.` });
     }
   }
 
@@ -33,7 +33,7 @@ class UserController {
       res.status(201).json({ id: id });
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to create user.` });
+      res.status(500).json({ error: `fail to create user.` });
     }
   }
 
@@ -43,7 +43,7 @@ class UserController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to update user.` });
+      res.status(500).json({ error: `fail to update user.` });
     }
   }
 
@@ -53,7 +53,7 @@ class UserController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to delete user.` });
+      res.status(500).json({ error: `fail to delete user.` });
     }
   }
 
@@ -63,7 +63,7 @@ class UserController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to delete users.` });
+      res.status(500).json({ error: `fail to delete users.` });
     }
   }
 
@@ -73,7 +73,7 @@ class UserController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ msg: `fail to list users.` });
+      res.status(500).json({ error: `fail to list users.` });
     }
   }
 }

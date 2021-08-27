@@ -1,3 +1,4 @@
+import { hash } from 'argon2';
 import { v4 as uuidv4 } from 'uuid';
 import { CRUD } from '../interfaces/crud.interface';
 import User from '../models/user.model';
@@ -17,8 +18,14 @@ class UserService implements CRUD {
     return User.findByPk(id);
   }
 
+  async getByEmail(email: string) {
+    return User.findOne({ where: { email } });
+  }
+
   async create(resource: UserCreationAttributes) {
     const id = uuidv4();
+    // password encrypted with argon2
+    resource.password = await hash(resource.password);
     await User.create({ ...resource, id });
     return id;
   }
@@ -28,11 +35,13 @@ class UserService implements CRUD {
   }
 
   async delete(record: User) {
-    return record.destroy();
+    await record.destroy();
   }
 
   async deleteAll() {
-    return User.destroy({ truncate: true });
+    // await User.sequelize?.query('SET FOREIGN_KEY_CHECKS = 0');
+    await User.truncate();
+    // await User.sequelize?.query('SET FOREIGN_KEY_CHECKS = 1');
   }
 
   async getPets(record: User) {

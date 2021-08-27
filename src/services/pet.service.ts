@@ -30,17 +30,19 @@ class PetService implements CRUD {
 
   async update(record: Pet, resource: PetCreationAttributes) {
     if (resource.picture) {
-      resource.picture = this.writePicture(`${record.get('id')}`, resource.picture);
+      resource.picture = this.writePicture(
+        `${record.get('id')}`, resource.picture,
+      );
     }
     return record.update({ ...resource });
   }
 
   async delete(record: Pet) {
-    return record.destroy();
+    await record.destroy();
   }
 
   async deleteAll() {
-    return Pet.destroy({ truncate: true });
+    await Pet.truncate();
   }
 
   /**

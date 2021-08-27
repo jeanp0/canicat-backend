@@ -11,7 +11,7 @@ class PetMiddleware {
     const { id } = req.params;
     const record = await petService.getById(id);
     if (!record) {
-      return res.status(404).send({ msg: `Pet ${id} not found` });
+      return res.status(404).send({ mserrorg: `Pet ${id} not found` });
     }
     res.locals.pet = record;
     next();
@@ -21,7 +21,7 @@ class PetMiddleware {
     const { userId } = req.body;
     const record = await userService.getById(userId);
     if (!record) {
-      return res.status(404).send({ msg: `User ${userId} not found` });
+      return res.status(404).send({ error: `User ${userId} not found` });
     }
     next();
   }

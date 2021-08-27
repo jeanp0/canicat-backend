@@ -4,16 +4,14 @@ import express from 'express';
 import * as expressWinston from 'express-winston';
 import * as http from 'http';
 import * as winston from 'winston';
-import { CommonRoutesConfig } from './routes/common.routes.config';
 import db from './config/db.config';
-import { VeterinaryRoutes } from './routes/veterinary.routes.config';
-import { PetRoutes } from './routes/pet.routes.config';
-import { UserRoutes } from './routes/user.routes.config';
+import { AuthRoutes } from './routes/auth.routes.config';
+import { CommonRoutesConfig } from './routes/common.routes.config';
 import { DiseaseRecordRoutes } from './routes/disease.record.routes.config';
+import { PetRoutes } from './routes/pet.routes.config';
 import { TreatmentRecordRoutes } from './routes/treatment.record.routes.config';
+import { UserRoutes } from './routes/user.routes.config';
 import { VaccineRecordRoutes } from './routes/vaccine.record.routes.config';
-import * as fs from 'fs';
-import * as path from 'path';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -63,12 +61,13 @@ app.use(expressWinston.logger(loggerOptions));
 // here we are adding the UserRoutes to our array,
 // after sending the Express.js application object to have the routes added to our app!
 // (here is added the routes to the app server)
-routes.push(new VeterinaryRoutes(app));
+// routes.push(new VeterinaryRoutes(app));
 routes.push(new PetRoutes(app));
 routes.push(new UserRoutes(app));
 routes.push(new DiseaseRecordRoutes(app));
 routes.push(new TreatmentRecordRoutes(app));
 routes.push(new VaccineRecordRoutes(app));
+routes.push(new AuthRoutes(app));
 
 // serve static files from "public" directory
 // example: http://localhost:3000/pet_pictures/dogo.jpg
