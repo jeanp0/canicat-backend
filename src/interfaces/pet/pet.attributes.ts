@@ -4,9 +4,8 @@ export interface PetAttributes {
   id: string;
   name: string;
   species: string;
-  race: string;
-  sexo: string | null;
-  color: string | null;
+  breed: string;
+  sexo: string;
   picture: string | null;
 }
 

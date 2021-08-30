@@ -10,9 +10,8 @@ class Pet extends Model<PetAttributes, PetCreationAttributes> implements PetAttr
   id!: string;
   name!: string;
   species!: string;
-  race!: string;
-  sexo!: string | null;
-  color!: string | null;
+  breed!: string;
+  sexo!: string;
   picture!: string | null;
 
   public readonly createdAt!: Date;
@@ -35,15 +34,13 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    race: {
+    breed: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     sexo: {
       type: DataTypes.STRING,
-    },
-    color: {
-      type: DataTypes.STRING,
+      allowNull: false,
     },
     picture: {
       type: DataTypes.STRING,
