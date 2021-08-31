@@ -7,7 +7,6 @@ export interface UserAttributes {
   firstname: string;
   lastname: string | null;
   dni: string;
-  telf: string | null;
 }
 
 export type UserCreationAttributes = Optional<UserAttributes, 'id'>;

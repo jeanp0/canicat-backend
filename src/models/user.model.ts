@@ -10,7 +10,6 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
   firstname!: string;
   lastname!: string | null;
   dni!: string;
-  telf!: string | null;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -56,9 +55,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    telf: {
-      type: DataTypes.STRING,
     },
   },
   {
