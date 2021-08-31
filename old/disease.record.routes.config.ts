@@ -19,7 +19,6 @@ export class DiseaseRecordRoutes extends CommonRoutesConfig {
         // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('name').isString(),
         body('description').isString().optional(),
-        body('veterinaryId').isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         diseaseRecordController.create,
       )
@@ -33,14 +32,12 @@ export class DiseaseRecordRoutes extends CommonRoutesConfig {
         // veterinaryMiddleware.validateVeterinaryExistsByBody,
         body('name').isString(),
         body('description').isString(),
-        body('veterinaryId').isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         diseaseRecordController.update,
       )
       .patch(
         body('name').isString().optional(),
         body('description').isString().optional(),
-        body('veterinaryId').isUUID(4).optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         diseaseRecordController.update,
       )

@@ -1,10 +1,20 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '../config/db.config';
-import { PostVaccineRecordDto } from '../interfaces/vaccine_record/post.vaccine.record.dto';
+import { VaccineAttributes, VaccineCreationAttributes } from '../interfaces/vaccine.attributes';
 
-class VaccineRecord extends Model<PostVaccineRecordDto> {}
+class Vaccine extends Model<VaccineAttributes, VaccineCreationAttributes> implements VaccineAttributes {
+  id!: string;
+  name!: string;
+  type!: string;
+  lastVaccineDate!: Date;
+  nextVaccineDate!: Date | null;
+  description!: string | null;
 
-VaccineRecord.init(
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+}
+
+Vaccine.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -31,7 +41,7 @@ VaccineRecord.init(
       type: DataTypes.STRING,
     },
   },
-  { sequelize: db, modelName: 'vaccine_record' },
+  { sequelize: db },
 );
 
-export default VaccineRecord;
+export default Vaccine;

@@ -1,12 +1,12 @@
 import express from 'express';
 import { body } from 'express-validator';
-import vaccineRecordController from '../controllers/vaccine.record.controller';
+import { BASE_URI, VACCINES_URI } from '../config/routes.config';
+import vaccineRecordController from '../controllers/vaccine.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
-import vaccineRecordMiddleware from '../middlewares/vaccine.record.validation.middleware';
-import { BASE_URI, VACCINES_URI } from './../config/routes.config';
+import vaccineRecordMiddleware from '../middlewares/vaccine.validation.middleware';
 import { CommonRoutesConfig } from './common.routes.config';
 
-export class VaccineRecordRoutes extends CommonRoutesConfig {
+export class VaccineRoutes extends CommonRoutesConfig {
 
   constructor(app: express.Application) {
     super(app, 'VaccineRecordRoutes');
@@ -23,7 +23,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
         body('lastVaccineDate').isDate(),
         body('nextVaccineDate').isDate().optional(),
         body('description').isString().optional(),
-        body('veterinaryId').isUUID(4),
+        body('petId').isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         vaccineRecordController.create,
       )
@@ -31,7 +31,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
 
     this.app
       .route(`${BASE_URI}${VACCINES_URI}/:id`)
-      .all(vaccineRecordMiddleware.validateVaccineRecordExistsByParams)
+      .all(vaccineRecordMiddleware.validateVaccineExistsByParams)
       .get(vaccineRecordController.read)
       .put(
         // veterinaryMiddleware.validateVeterinaryExistsByBody,
@@ -40,7 +40,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
         body('lastVaccineDate').isDate(),
         body('nextVaccineDate').isDate(),
         body('description').isString(),
-        body('veterinaryId').isUUID(4),
+        body('petId').isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         vaccineRecordController.update,
       )
@@ -50,7 +50,7 @@ export class VaccineRecordRoutes extends CommonRoutesConfig {
         body('lastVaccineDate').isDate().optional(),
         body('nextVaccineDate').isDate().optional(),
         body('description').isString().optional(),
-        body('veterinaryId').isUUID(4).optional(),
+        body('petId').isUUID(4).optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         vaccineRecordController.update,
       )

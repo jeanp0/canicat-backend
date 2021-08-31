@@ -1,10 +1,7 @@
-import { DataTypes, Model } from 'sequelize';
+import { Association, DataTypes, HasManyAddAssociationMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, Model } from 'sequelize';
 import db from '../config/db.config';
-import { PetAttributes } from '../interfaces/pet/pet.attributes';
-import { PetCreationAttributes } from './../interfaces/pet/pet.attributes';
-import DiseaseRecord from './disease.record.model';
-import TreatmentRecord from './treatment.record.model';
-import VaccineRecord from './vaccine.record.model';
+import { PetAttributes, PetCreationAttributes } from '../interfaces/pet.attributes';
+import Vaccine from './vaccine.model';
 
 class Pet extends Model<PetAttributes, PetCreationAttributes> implements PetAttributes {
   id!: string;
@@ -16,6 +13,18 @@ class Pet extends Model<PetAttributes, PetCreationAttributes> implements PetAttr
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  public getVaccines!: HasManyGetAssociationsMixin<Vaccine>;
+  public addVaccine!: HasManyAddAssociationMixin<Vaccine, string>;
+  public hasVaccine!: HasManyHasAssociationMixin<Vaccine, string>;
+  public countVaccines!: HasManyCountAssociationsMixin;
+  public createVaccine!: HasManyCreateAssociationMixin<Vaccine>;
+
+  public readonly vaccines?: Vaccine[];
+
+  public static associations: {
+    vaccines: Association<Pet, Vaccine>;
+  };
 }
 
 Pet.init(
@@ -51,8 +60,11 @@ Pet.init(
   },
 );
 
-Pet.hasOne(VaccineRecord);
-Pet.hasOne(TreatmentRecord);
-Pet.hasOne(DiseaseRecord);
+Pet.hasMany(Vaccine, {
+  sourceKey: 'id',
+  foreignKey: 'petId',
+  as: 'vaccines',
+  onDelete: 'CASCADE',
+});
 
 export default Pet;

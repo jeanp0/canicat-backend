@@ -1,10 +1,10 @@
 import debug from 'debug';
 import express from 'express';
-import vaccineRecordService from '../services/vaccine.record.service';
+import vaccineRecordService from '../services/vaccine.service';
 
 const log: debug.IDebugger = debug('app:vaccine-record-controller');
 
-class VaccineRecordController {
+class VaccineController {
 
   async readAll(req: express.Request, res: express.Response) {
     try {
@@ -68,4 +68,4 @@ class VaccineRecordController {
   }
 }
 
-export default new VaccineRecordController();
+export default new VaccineController();

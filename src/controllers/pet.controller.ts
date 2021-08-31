@@ -66,6 +66,16 @@ class PetController {
       res.status(500).json({ error: `fail to delete pets.` });
     }
   }
+
+  async getVaccines(req: express.Request, res: express.Response) {
+    try {
+      const data = await petService.getVaccines(res.locals.pet);
+      res.status(200).json(data);
+    } catch (err: any) {
+      log(err.message);
+      res.status(500).json({ error: `fail to list vaccines of pet ${req.params.id}.` });
+    }
+  }
 }
 
 export default new PetController();

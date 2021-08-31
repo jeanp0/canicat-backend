@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 import petController from '../controllers/pet.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import petMiddleware from '../middlewares/pet.middleware';
-import { BASE_URI, PETS_URI } from './../config/routes.config';
+import { BASE_URI, PETS_URI, VACCINES_URI } from './../config/routes.config';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class PetRoutes extends CommonRoutesConfig {
@@ -55,6 +55,13 @@ export class PetRoutes extends CommonRoutesConfig {
         petController.update,
       )
       .delete(petController.delete);
+
+    this.app
+      .route(`${BASE_URI}${PETS_URI}/:id${VACCINES_URI}`)
+      .get(
+        petMiddleware.validatePetExistsByParams,
+        petController.getVaccines,
+      );
 
     return this.app;
   }

@@ -1,6 +1,6 @@
 import { Association, DataTypes, HasManyAddAssociationMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, Model } from 'sequelize';
 import db from '../config/db.config';
-import { UserAttributes, UserCreationAttributes } from './../interfaces/user/user.attributes';
+import { UserAttributes, UserCreationAttributes } from '../interfaces/user.attributes';
 import Pet from './pet.model';
 
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
@@ -72,6 +72,5 @@ User.hasMany(Pet, {
   as: 'pets',
   onDelete: 'CASCADE',
 });
-// User.hasMany(Pet);
 
 export default User;

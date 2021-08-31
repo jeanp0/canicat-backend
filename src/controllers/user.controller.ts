@@ -73,7 +73,7 @@ class UserController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to list users.` });
+      res.status(500).json({ error: `fail to list pets of user ${req.params.id}.` });
     }
   }
 }

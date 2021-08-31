@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import { CRUD } from '../interfaces/crud.interface';
+import { PetCreationAttributes } from '../interfaces/pet.attributes';
 import Pet from '../models/pet.model';
 import { PET_PICTURES_PATH, STATIC_FILES_DIRECTORY } from './../config/routes.config';
-import { PetCreationAttributes } from './../interfaces/pet/pet.attributes';
 
 class PetService implements CRUD {
 
@@ -46,6 +46,10 @@ class PetService implements CRUD {
 
   async deleteAll() {
     await Pet.truncate();
+  }
+
+  async getVaccines(record: Pet) {
+    return record.getVaccines();
   }
 
   /**

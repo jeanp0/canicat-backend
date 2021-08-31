@@ -8,11 +8,9 @@ import db from './config/db.config';
 import { PORT, STATIC_FILES_DIRECTORY } from './config/routes.config';
 import { AuthRoutes } from './routes/auth.routes.config';
 import { CommonRoutesConfig } from './routes/common.routes.config';
-import { DiseaseRecordRoutes } from './routes/disease.record.routes.config';
 import { PetRoutes } from './routes/pet.routes.config';
-import { TreatmentRecordRoutes } from './routes/treatment.record.routes.config';
 import { UserRoutes } from './routes/user.routes.config';
-import { VaccineRecordRoutes } from './routes/vaccine.record.routes.config';
+import { VaccineRoutes } from './routes/vaccine.routes.config';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -64,9 +62,7 @@ app.use(expressWinston.logger(loggerOptions));
 // routes.push(new VeterinaryRoutes(app));
 routes.push(new PetRoutes(app));
 routes.push(new UserRoutes(app));
-routes.push(new DiseaseRecordRoutes(app));
-routes.push(new TreatmentRecordRoutes(app));
-routes.push(new VaccineRecordRoutes(app));
+routes.push(new VaccineRoutes(app));
 routes.push(new AuthRoutes(app));
 
 // serve static files from "public" directory

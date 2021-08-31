@@ -23,7 +23,6 @@ export class TreatmentRecordRoutes extends CommonRoutesConfig {
         body('lastTreatmentDate').isDate(),
         body('nextTreatmentDate').isDate().optional(),
         body('description').isString().optional(),
-        body('veterinaryId').isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         treatmentRecordController.create,
       )
@@ -40,7 +39,6 @@ export class TreatmentRecordRoutes extends CommonRoutesConfig {
         body('lastTreatmentDate').isDate(),
         body('nextTreatmentDate').isDate(),
         body('description').isString(),
-        body('veterinaryId').isUUID(4),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         treatmentRecordController.update,
       )
@@ -50,7 +48,6 @@ export class TreatmentRecordRoutes extends CommonRoutesConfig {
         body('lastTreatmentDate').isDate().optional(),
         body('nextTreatmentDate').isDate().optional(),
         body('description').isString().optional(),
-        body('veterinaryId').isUUID(4).optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         treatmentRecordController.update,
       )

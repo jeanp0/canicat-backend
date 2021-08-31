@@ -1,14 +1,14 @@
 import { hash } from 'argon2';
 import { v4 as uuidv4 } from 'uuid';
 import { CRUD } from '../interfaces/crud.interface';
+import { UserCreationAttributes } from '../interfaces/user.attributes';
 import User from '../models/user.model';
-import { UserCreationAttributes } from './../interfaces/user/user.attributes';
 
 class UserService implements CRUD {
 
   async getAll(limit: number | undefined, offset: number | undefined) {
     return User.findAll({
-      where: {},
+      where: { },
       limit: limit && Number(limit),
       offset: offset && Number(offset),
     });
@@ -39,13 +39,10 @@ class UserService implements CRUD {
   }
 
   async deleteAll() {
-    // await User.sequelize?.query('SET FOREIGN_KEY_CHECKS = 0');
     await User.truncate();
-    // await User.sequelize?.query('SET FOREIGN_KEY_CHECKS = 1');
   }
 
   async getPets(record: User) {
-    // return User.findByPk('s', { include: [User.associations.pets], rejectOnEmpty: true });
     return record.getPets();
   }
 }
