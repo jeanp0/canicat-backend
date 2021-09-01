@@ -10,7 +10,7 @@ class VaccineMiddleware {
     const { id } = req.params;
     const record = await vaccineRecordService.getById(id);
     if (!record) {
-      return res.status(404).send({ error: `Vaccine ${id} not found` });
+      return res.status(404).send({ error: `La vacuna ${id} no fue encontrada` });
     }
     res.locals.vaccineRecord = record;
     next();
