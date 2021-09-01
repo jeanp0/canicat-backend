@@ -4,8 +4,8 @@
   "description": "API REST para la app móvil CaniCat, proyecto de universidad",
   "main": "index.js",
   "scripts": {
-    "start": "node src/dist/index.js",
-    "postinstall": "tsc && mv -i -v public src/dist/ && rm -v -rf src",
+    "start": "node dist/index.js",
+    "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
     "debug": "set DEBUG=* && npm run start",
     "lint": "eslint src/**/*.ts",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
