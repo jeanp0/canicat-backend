@@ -70,14 +70,14 @@ routes.push(new AuthRoutes(app));
 app.use(express.static(STATIC_FILES_DIRECTORY));
 
 // this is a simple route to make sure everything is working properly
-const runningMessage = `Server running at http://localhost:${PORT}`;
+const runningMessage = `Server running at http://localhost:${process.env.PORT || PORT}`;
 app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage);
 });
 
 
 // the already configured server listens on the corresponding port
-server.listen(PORT, () => {
+server.listen(process.env.PORT || PORT, () => {
   routes.forEach((route: CommonRoutesConfig) => {
     debugLog(`Routes configured for ${route.getName()}`);
   });
