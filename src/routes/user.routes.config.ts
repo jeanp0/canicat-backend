@@ -22,7 +22,6 @@ export class UserRoutes extends CommonRoutesConfig {
         body('firstname').isString(),
         body('lastname').isString(),
         body('dni').isString(),
-        body('telf').isString().optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         userController.create,
       )
@@ -38,7 +37,6 @@ export class UserRoutes extends CommonRoutesConfig {
         body('firstname').isString(),
         body('lastname').isString(),
         body('dni').isString(),
-        body('telf').isString(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         userController.update,
       )
@@ -48,7 +46,6 @@ export class UserRoutes extends CommonRoutesConfig {
         body('firstname').isString().optional(),
         body('lastname').isString().optional(),
         body('dni').isString().optional(),
-        body('telf').isString().optional(),
         bodyValidationMiddleware.verifyBodyFieldsErrors,
         userController.update,
       )
