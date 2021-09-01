@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
+    "postinstall": "tsc && mv -i -v public/pet_pictures dist/ && rm -v -rf src",
     "debug": "set DEBUG=* && npm run start",
     "lint": "eslint src/**/*.ts",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
