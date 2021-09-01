@@ -5,7 +5,7 @@ import * as expressWinston from 'express-winston';
 import * as http from 'http';
 import * as winston from 'winston';
 import db from './config/db.config';
-import { PORT } from './config/routes.config';
+import { PORT, STATIC_FILES_DIRECTORY } from './config/routes.config';
 import { AuthRoutes } from './routes/auth.routes.config';
 import { CommonRoutesConfig } from './routes/common.routes.config';
 import { PetRoutes } from './routes/pet.routes.config';
