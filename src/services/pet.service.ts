@@ -65,14 +65,14 @@ class PetService implements CRUD {
     // decode base64
     const bufferString = Buffer.from(pictureBase64, 'base64');
     // file put contents
-    fs.writeFileSync(path.join(__dirname, STATIC_FILES_DIRECTORY, picturePath), bufferString);
+    fs.writeFileSync(path.join(__dirname, STATIC_FILES_DIRECTORY) + picturePath, bufferString);
     return picturePath;
   }
 
   private removePicture(petId: string): void {
     const filename = `${petId}.jpeg`;
     const picturePath = `${PET_PICTURES_PATH}/${filename}`;
-    fs.unlinkSync(path.join(__dirname, STATIC_FILES_DIRECTORY, picturePath));
+    fs.unlinkSync(path.join(__dirname, STATIC_FILES_DIRECTORY) + picturePath);
   }
 }
 
