@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "API REST para la app móvil CaniCat, proyecto de universidad",
   "main": "index.js",
+  "engines": {
+    "node": "14.17.1"
+  },
   "scripts": {
     "start": "node dist/index.js",
     "postinstall": "tsc",
-    "debug": "set DEBUG=* && npm run start",
+    "debug": "export DEBUG=* && npm run start",
     "lint": "eslint src/**/*.ts",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "author": "Arroyo, Bayona, Espinoza, Lino, Mendoza",
   "license": "ISC",
