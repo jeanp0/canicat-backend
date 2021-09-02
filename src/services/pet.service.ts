@@ -70,7 +70,10 @@ class PetService implements CRUD {
   }
 
   private removePicture(picture: string): void {
-    fs.unlinkSync(path.join(__dirname, '/..', STATIC_FILES_DIRECTORY, picture));
+    const absolutePicturePath = path.join(__dirname, '/..', STATIC_FILES_DIRECTORY, picture);
+    if (fs.existsSync(absolutePicturePath)) {
+      fs.unlinkSync(absolutePicturePath);
+    }
   }
 }
 
