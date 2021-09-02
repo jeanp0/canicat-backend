@@ -71,6 +71,8 @@ routes.push(new AuthRoutes(app));
 // example: http://localhost:3000/pet_pictures/dogo.jpg
 // app.use(express.static(STATIC_FILES_DIRECTORY));
 console.log('AAAAAAAAAA' + path.join(__dirname, STATIC_FILES_DIRECTORY));
+console.log('BBBBBBBBBB' + path.join(__dirname + STATIC_FILES_DIRECTORY));
+console.log('CCCCCCCCCC' + __dirname);
 app.use('/public', express.static(path.join(__dirname, STATIC_FILES_DIRECTORY)));
 
 // this is a simple route to make sure everything is working properly
