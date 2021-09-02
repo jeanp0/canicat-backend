@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { CRUD } from '../interfaces/crud.interface';
 import { PetCreationAttributes } from '../interfaces/pet.attributes';
@@ -64,14 +65,14 @@ class PetService implements CRUD {
     // decode base64
     const bufferString = Buffer.from(pictureBase64, 'base64');
     // file put contents
-    fs.writeFileSync(`${STATIC_FILES_DIRECTORY}${picturePath}`, bufferString);
+    fs.writeFileSync(path.join(STATIC_FILES_DIRECTORY, picturePath), bufferString);
     return picturePath;
   }
 
   private removePicture(petId: string): void {
     const filename = `${petId}.jpeg`;
     const picturePath = `${PET_PICTURES_PATH}/${filename}`;
-    fs.unlinkSync(`${STATIC_FILES_DIRECTORY}${picturePath}`);
+    fs.unlinkSync(path.join(STATIC_FILES_DIRECTORY, picturePath));
   }
 }
 

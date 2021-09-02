@@ -6,7 +6,7 @@ import * as http from 'http';
 import path from 'path';
 import * as winston from 'winston';
 import db from './config/db.config';
-import { PORT as LOCAL_PORT } from './config/routes.config';
+import { PORT as LOCAL_PORT, STATIC_FILES_DIRECTORY } from './config/routes.config';
 import { AuthRoutes } from './routes/auth.routes.config';
 import { CommonRoutesConfig } from './routes/common.routes.config';
 import { PetRoutes } from './routes/pet.routes.config';
@@ -70,7 +70,7 @@ routes.push(new AuthRoutes(app));
 // serve static files from "public" directory
 // example: http://localhost:3000/pet_pictures/dogo.jpg
 // app.use(express.static(STATIC_FILES_DIRECTORY));
-app.use(express.static(path.join(__dirname + 'public')));
+app.use(express.static(path.join(__dirname + STATIC_FILES_DIRECTORY)));
 
 // this is a simple route to make sure everything is working properly
 const runningMessage = `Server running at http://localhost:${PORT}`;
