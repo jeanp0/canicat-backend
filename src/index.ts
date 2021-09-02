@@ -70,7 +70,7 @@ routes.push(new AuthRoutes(app));
 // serve static files from "public" directory
 // example: http://localhost:3000/pet_pictures/dogo.jpg
 // app.use(express.static(STATIC_FILES_DIRECTORY));
-debugLog('AAAAAAAAAA' + path.join(__dirname, STATIC_FILES_DIRECTORY));
+console.log('AAAAAAAAAA' + path.join(__dirname, STATIC_FILES_DIRECTORY));
 app.use('/public', express.static(path.join(__dirname, STATIC_FILES_DIRECTORY)));
 
 // this is a simple route to make sure everything is working properly
