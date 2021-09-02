@@ -40,7 +40,7 @@ class PetService implements CRUD {
 
   async delete(record: Pet) {
     if (record.picture !== null) {
-      this.removePicture(record.id);
+      this.removePicture(record.picture);
     }
     await record.destroy();
   }
@@ -61,19 +61,15 @@ class PetService implements CRUD {
    */
   private writePicture(petId: string, pictureBase64: string): string {
     const filename = `/${petId}.jpeg`;
-    const picturePath = `${PET_PICTURES_PATH}${filename}`;
     // decode base64
     const bufferString = Buffer.from(pictureBase64, 'base64');
     // file put contents
-    console.log(path.join(__dirname, STATIC_FILES_DIRECTORY) + picturePath);
-    fs.writeFileSync(path.join(__dirname, STATIC_FILES_DIRECTORY) + picturePath, bufferString);
-    return picturePath;
+    fs.writeFileSync(path.join(__dirname, '/..', STATIC_FILES_DIRECTORY, PET_PICTURES_PATH, filename), bufferString);
+    return `${PET_PICTURES_PATH}${filename}`;
   }
 
-  private removePicture(petId: string): void {
-    const filename = `/${petId}.jpeg`;
-    const picturePath = `${PET_PICTURES_PATH}${filename}`;
-    fs.unlinkSync(path.join(__dirname, STATIC_FILES_DIRECTORY) + picturePath);
+  private removePicture(picture: string): void {
+    fs.unlinkSync(path.join(__dirname, '/..', STATIC_FILES_DIRECTORY, picture));
   }
 }
 

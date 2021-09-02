@@ -6,4 +6,4 @@ export const VACCINES_URI = '/vaccines';
 export const PORT = 3000;
 
 export const PET_PICTURES_PATH = '/pet_pictures';
-export const STATIC_FILES_DIRECTORY = 'public';
+export const STATIC_FILES_DIRECTORY = '/public';
