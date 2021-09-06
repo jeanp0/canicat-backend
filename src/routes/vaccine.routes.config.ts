@@ -7,7 +7,6 @@ import vaccineRecordMiddleware from '../middlewares/vaccine.validation.middlewar
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class VaccineRoutes extends CommonRoutesConfig {
-
   constructor(app: express.Application) {
     super(app, 'VaccineRecordRoutes');
   }

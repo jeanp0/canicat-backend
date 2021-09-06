@@ -6,11 +6,14 @@ import * as http from 'http';
 import path from 'path';
 import * as winston from 'winston';
 import db from './config/db.config';
-import { PORT as LOCAL_PORT, STATIC_FILES_DIRECTORY } from './config/routes.config';
+import {
+  PORT as LOCAL_PORT,
+  STATIC_FILES_DIRECTORY,
+} from './config/routes.config';
 import { AuthRoutes } from './routes/auth.routes.config';
 import { CommonRoutesConfig } from './routes/common.routes.config';
 import { PetRoutes } from './routes/pet.routes.config';
-import { UserRoutes } from './routes/user.routes.config';
+import UserRoutes from './routes/user.routes.config';
 import { VaccineRoutes } from './routes/vaccine.routes.config';
 
 const app: express.Application = express();
@@ -52,7 +55,7 @@ const loggerOptions: expressWinston.LoggerOptions = {
     winston.format.prettyPrint(),
     winston.format.colorize({ all: true }),
   ),
-  meta: process.env.DEBUG ? true : false, // when not debugging, log requests as one-liners
+  meta: !!process.env.DEBUG, // when not debugging, log requests as one-liners
 };
 
 // initialize the logger with de above configuration
@@ -76,7 +79,6 @@ const runningMessage = `Server running at http://localhost:${PORT}`;
 app.get('/', (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage);
 });
-
 
 // the already configured server listens on the corresponding port
 server.listen(PORT, () => {

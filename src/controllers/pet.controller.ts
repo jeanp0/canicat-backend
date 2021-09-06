@@ -5,7 +5,6 @@ import petService from '../services/pet.service';
 const log: debug.IDebugger = debug('app:pet-controller');
 
 class PetController {
-
   async getAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -73,7 +72,9 @@ class PetController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to list vaccines of pet ${req.params.id}.` });
+      res
+        .status(500)
+        .json({ error: `fail to list vaccines of pet ${req.params.id}.` });
     }
   }
 }

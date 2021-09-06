@@ -5,7 +5,6 @@ import User from '../models/user.model';
 const log: debug.IDebugger = debug('app:auth-controller');
 
 class AuthController {
-
   async login(req: express.Request, res: express.Response) {
     try {
       const user = res.locals.userLogged as User;

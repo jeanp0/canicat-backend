@@ -4,10 +4,9 @@ import Vaccine from '../models/vaccine.model';
 import { VaccineCreationAttributes } from './../interfaces/vaccine.attributes';
 
 class VaccineService implements CRUD {
-
   async getAll(limit: number | undefined, offset: number | undefined) {
     return Vaccine.findAll({
-      where: { },
+      where: {},
       limit: limit && Number(limit),
       offset: offset && Number(offset),
     });

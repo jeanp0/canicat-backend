@@ -1,13 +1,12 @@
 import express from 'express';
 import { body } from 'express-validator';
+import { BASE_URI, PETS_URI, USERS_URI } from '../config/routes.config';
 import userController from '../controllers/user.controller';
 import bodyValidationMiddleware from '../middlewares/body.validation.middleware';
 import userMiddleware from '../middlewares/user.middleware';
-import { BASE_URI, PETS_URI, USERS_URI } from './../config/routes.config';
 import { CommonRoutesConfig } from './common.routes.config';
 
-export class UserRoutes extends CommonRoutesConfig {
-
+class UserRoutes extends CommonRoutesConfig {
   constructor(app: express.Application) {
     super(app, 'UserRoutes');
   }
@@ -53,10 +52,10 @@ export class UserRoutes extends CommonRoutesConfig {
 
     this.app
       .route(`${BASE_URI}${USERS_URI}/:id${PETS_URI}`)
-      .get(
-        userMiddleware.validateUserExistsByParams,
-        userController.getPets);
+      .get(userMiddleware.validateUserExistsByParams, userController.getPets);
 
     return this.app;
   }
 }
+
+export default UserRoutes;

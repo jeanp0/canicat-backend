@@ -3,7 +3,6 @@ import express from 'express';
 import userService from '../services/user.service';
 
 class AuthMiddleware {
-
   async verifyUserPassword(
     req: express.Request,
     res: express.Response,
@@ -18,7 +17,9 @@ class AuthMiddleware {
         return next();
       }
     }
-    res.status(400).send({ error: 'Correo electrónico y/o contraseña incorrecta' });
+    res
+      .status(400)
+      .send({ error: 'Correo electrónico y/o contraseña incorrecta' });
   }
 }
 

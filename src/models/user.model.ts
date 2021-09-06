@@ -1,9 +1,24 @@
-import { Association, DataTypes, HasManyAddAssociationMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, Model } from 'sequelize';
+import {
+  Association,
+  DataTypes,
+  HasManyAddAssociationMixin,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  HasManyGetAssociationsMixin,
+  HasManyHasAssociationMixin,
+  Model,
+} from 'sequelize';
 import db from '../config/db.config';
-import { UserAttributes, UserCreationAttributes } from '../interfaces/user.attributes';
+import {
+  UserAttributes,
+  UserCreationAttributes,
+} from '../interfaces/user.attributes';
 import Pet from './pet.model';
 
-class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+class User
+  extends Model<UserAttributes, UserCreationAttributes>
+  implements UserAttributes
+{
   id!: string;
   email!: string;
   password!: string;

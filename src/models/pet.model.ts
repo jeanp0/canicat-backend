@@ -1,23 +1,48 @@
-import { Association, DataTypes, HasManyAddAssociationMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, Model } from 'sequelize';
+import {
+  Association,
+  DataTypes,
+  HasManyAddAssociationMixin,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  HasManyGetAssociationsMixin,
+  HasManyHasAssociationMixin,
+  Model,
+} from 'sequelize';
 import db from '../config/db.config';
-import { PetAttributes, PetCreationAttributes } from '../interfaces/pet.attributes';
+import {
+  PetAttributes,
+  PetCreationAttributes,
+} from '../interfaces/pet.attributes';
 import Vaccine from './vaccine.model';
 
-class Pet extends Model<PetAttributes, PetCreationAttributes> implements PetAttributes {
+class Pet
+  extends Model<PetAttributes, PetCreationAttributes>
+  implements PetAttributes
+{
   id!: string;
+
   name!: string;
+
   species!: string;
+
   breed!: string;
+
   sexo!: string;
+
   picture!: string | null;
 
   public readonly createdAt!: Date;
+
   public readonly updatedAt!: Date;
 
   public getVaccines!: HasManyGetAssociationsMixin<Vaccine>;
+
   public addVaccine!: HasManyAddAssociationMixin<Vaccine, string>;
+
   public hasVaccine!: HasManyHasAssociationMixin<Vaccine, string>;
+
   public countVaccines!: HasManyCountAssociationsMixin;
+
   public createVaccine!: HasManyCreateAssociationMixin<Vaccine>;
 
   public readonly vaccines?: Vaccine[];

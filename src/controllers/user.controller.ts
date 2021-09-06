@@ -5,7 +5,6 @@ import userService from '../services/user.service';
 const log: debug.IDebugger = debug('app:user-controller');
 
 class UserController {
-
   async getAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -14,7 +13,7 @@ class UserController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to list users.` });
+      res.status(500).json({ error: 'fail to list users.' });
     }
   }
 
@@ -23,17 +22,17 @@ class UserController {
       res.status(200).json(res.locals.user);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to getById user.` });
+      res.status(500).json({ error: 'fail to getById user.' });
     }
   }
 
   async create(req: express.Request, res: express.Response) {
     try {
       const id = await userService.create(req.body);
-      res.status(201).json({ id: id });
+      res.status(201).json({ id });
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to create user.` });
+      res.status(500).json({ error: 'fail to create user.' });
     }
   }
 
@@ -43,7 +42,7 @@ class UserController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to update user.` });
+      res.status(500).json({ error: 'fail to update user.' });
     }
   }
 
@@ -53,7 +52,7 @@ class UserController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to delete user.` });
+      res.status(500).json({ error: 'fail to delete user.' });
     }
   }
 
@@ -63,7 +62,7 @@ class UserController {
       res.status(204).json();
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to delete users.` });
+      res.status(500).json({ error: 'fail to delete users.' });
     }
   }
 
@@ -73,7 +72,9 @@ class UserController {
       res.status(200).json(data);
     } catch (err: any) {
       log(err.message);
-      res.status(500).json({ error: `fail to list pets of user ${req.params.id}.` });
+      res
+        .status(500)
+        .json({ error: `fail to list pets of user ${req.params.id}.` });
     }
   }
 }

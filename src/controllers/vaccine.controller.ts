@@ -5,7 +5,6 @@ import vaccineRecordService from '../services/vaccine.service';
 const log: debug.IDebugger = debug('app:vaccine-record-controller');
 
 class VaccineController {
-
   async readAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -39,7 +38,9 @@ class VaccineController {
 
   async update(req: express.Request, res: express.Response) {
     try {
-      log(await vaccineRecordService.update(res.locals.vaccineRecord, req.body));
+      log(
+        await vaccineRecordService.update(res.locals.vaccineRecord, req.body),
+      );
       res.status(204).json();
     } catch (err: any) {
       log(err.message);

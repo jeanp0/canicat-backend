@@ -5,10 +5,9 @@ import { UserCreationAttributes } from '../interfaces/user.attributes';
 import User from '../models/user.model';
 
 class UserService implements CRUD {
-
   async getAll(limit: number | undefined, offset: number | undefined) {
     return User.findAll({
-      where: { },
+      where: {},
       limit: limit && Number(limit),
       offset: offset && Number(offset),
     });

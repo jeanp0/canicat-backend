@@ -1,8 +1,14 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '../config/db.config';
-import { VaccineAttributes, VaccineCreationAttributes } from '../interfaces/vaccine.attributes';
+import {
+  VaccineAttributes,
+  VaccineCreationAttributes,
+} from '../interfaces/vaccine.attributes';
 
-class Vaccine extends Model<VaccineAttributes, VaccineCreationAttributes> implements VaccineAttributes {
+class Vaccine
+  extends Model<VaccineAttributes, VaccineCreationAttributes>
+  implements VaccineAttributes
+{
   id!: string;
   name!: string;
   type!: string;
