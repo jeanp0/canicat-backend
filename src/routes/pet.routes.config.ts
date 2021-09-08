@@ -17,7 +17,6 @@ export class PetRoutes extends CommonRoutesConfig {
       .get(petController.getAll)
       .post(
         body('name').isString(),
-        body('age').isInt().optional(),
         body('breed').isString(),
         body('sexo').isString(),
         body('userId').isUUID(4),
@@ -34,7 +33,6 @@ export class PetRoutes extends CommonRoutesConfig {
       .get(petController.get)
       .put(
         body('name').isString(),
-        body('age').isInt(),
         body('breed').isString(),
         body('sexo').isString(),
         body('userId').isUUID(4),
@@ -45,7 +43,6 @@ export class PetRoutes extends CommonRoutesConfig {
       )
       .patch(
         body('name').isString().optional(),
-        body('age').isInt().optional(),
         body('breed').isString().optional(),
         body('sexo').isString().optional(),
         body('userId').isUUID(4).optional(),
