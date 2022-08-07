@@ -10,5 +10,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src/*"],
+  "exclude": ["dist", "node_modules"],
   "$schema": "https://json.schemastore.org/tsconfig"
 }

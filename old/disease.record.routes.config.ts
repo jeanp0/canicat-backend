@@ -6,7 +6,6 @@ import diseaseRecordMiddleware from '../middlewares/disease.record.middleware';
 import { CommonRoutesConfig } from './common.routes.config';
 
 export class DiseaseRecordRoutes extends CommonRoutesConfig {
-
   constructor(app: express.Application) {
     super(app, 'DiseaseRoutes');
   }

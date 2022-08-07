@@ -5,7 +5,6 @@ import diseaseRecordService from '../services/disease.record.service';
 const log: debug.IDebugger = debug('app:disease-record-controller');
 
 class DiseaseRecordController {
-
   async readAll(req: express.Request, res: express.Response) {
     try {
       const limit = req.query?.limit as number | undefined;
@@ -39,7 +38,9 @@ class DiseaseRecordController {
 
   async update(req: express.Request, res: express.Response) {
     try {
-      log(await diseaseRecordService.update(res.locals.diseaseRecord, req.body));
+      log(
+        await diseaseRecordService.update(res.locals.diseaseRecord, req.body),
+      );
       res.status(204).json();
     } catch (err: any) {
       log(err.message);

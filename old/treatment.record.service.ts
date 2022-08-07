@@ -7,7 +7,6 @@ import TreatmentRecord from '../models/treatment.record.model';
 import { PostTreatmentRecordDto } from '../interfaces/treatment_record/post.treatment.record.dto';
 
 class TreatmentRecordService implements CRUD {
-
   async getAll(limit: number | undefined, offset: number | undefined) {
     return TreatmentRecord.findAll({
       where: {},
@@ -26,7 +25,10 @@ class TreatmentRecordService implements CRUD {
     return id;
   }
 
-  async update(record: TreatmentRecord, resource: PutTreatmentRecordDto | PatchTreatmentRecordDto) {
+  async update(
+    record: TreatmentRecord,
+    resource: PutTreatmentRecordDto | PatchTreatmentRecordDto,
+  ) {
     return record.update({ ...resource });
   }
 

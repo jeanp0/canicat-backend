@@ -5,9 +5,7 @@ import bodyValidationMiddleware from '../middlewares/body.validation.middleware'
 import treatmentRecordMiddleware from '../middlewares/treatment.record.middleware';
 import { CommonRoutesConfig } from './common.routes.config';
 
-
 export class TreatmentRecordRoutes extends CommonRoutesConfig {
-
   constructor(app: express.Application) {
     super(app, 'TreatmentRecordRoutes');
   }

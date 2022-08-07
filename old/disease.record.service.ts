@@ -6,7 +6,6 @@ import { PatchDiseaseRecordDto } from '../interfaces/disease_record/patch.diseas
 import { PutDiseaseRecordDto } from '../interfaces/disease_record/put.disease.record.dto';
 
 class DiseaseRecordService implements CRUD {
-
   async getAll(limit: number | undefined, offset: number | undefined) {
     return DiseaseRecord.findAll({
       where: {},
@@ -25,7 +24,10 @@ class DiseaseRecordService implements CRUD {
     return id;
   }
 
-  async update(record: DiseaseRecord, resource: PutDiseaseRecordDto | PatchDiseaseRecordDto) {
+  async update(
+    record: DiseaseRecord,
+    resource: PutDiseaseRecordDto | PatchDiseaseRecordDto,
+  ) {
     return record.update({ ...resource });
   }
 
